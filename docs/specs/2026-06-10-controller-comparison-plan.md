@@ -84,11 +84,11 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
 **Goal:** the selected controllers render as a side‑by‑side comparison with differences highlighted.
 
 1. `/compare` route reads `ids` from the query string, resolves to `Controller[]`, drops missing ones with a toast.
-2. `ComparisonTable` component — rows grouped into sections (`Pricing & availability`, `Connectivity`, `Compatibility`, `Sticks & inputs`, `Physical`, `Notes`). Each row is a `{ label, values: ValueRenderer[] }`. The renderer is per‑attribute (price formatter, list‑of‑pill renderer, boolean check/✕, etc).
+2. `ComparisonGrid` component — built with CSS Grid on `<div>` elements (no `<table>`, see design §11). Rows grouped into `<section>`s (`Pricing & availability`, `Connectivity`, `Compatibility`, `Sticks & inputs`, `Physical`, `Notes`). Each row is a `{ label, values: ValueRenderer[] }`. The renderer is per‑attribute (price formatter, list‑of‑pill renderer, boolean check/✕, etc).
 3. Difference highlighting — a small `areAllEqual(values)` helper. Rows where this is false get an accent border; differing cells get an emphasised background. Equal rows are quiet visually.
 4. Column header — image, name, sale badge, link to the official product page, "✕ Remove" button that updates `CompareContext` and the URL.
 5. Empty‑column slot when fewer than 3 are selected — a "+ Add controller" cell that links back to `/`.
-6. Responsive: at `< md` the table breaks into one card per controller, with rows repeated per card and the section group headers retained.
+6. Responsive: the grid template collapses from `minmax(140px, auto) repeat(N, 1fr)` on `≥ md` to `1fr` on `< md`. On mobile each controller becomes a vertical card with the row label shown inline next to each value (e.g. "Connectivity: Bluetooth, 2.4G"). Same DOM, different `grid-template-columns` and a couple of `display` swaps — no conditional rendering.
 7. Tests:
    - `areAllEqual` unit tests across each value type (array order, null vs missing, numeric).
    - RTL test: render with 3 fixture controllers, assert that the price row has the differences accent and the two equal `rumble: true` cells do not.
@@ -99,7 +99,7 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
 
 **Goal:** the app feels intentional and ships.
 
-1. Accessibility pass: real `<table>` semantics, focus rings, keyboard navigation of the compare bar, `aria-live` toast region, colour‑independent diff indicator (small dot).
+1. Accessibility pass: semantic `<section>` + heading structure (no `<table>`), focus rings, keyboard navigation of the compare bar, `aria-live="polite"` toast region, colour‑independent diff indicator (small dot/icon).
 2. Empty/loading/error states: skeleton cards on first load, banner for "live pricing unavailable — showing cached prices from <time>", toast for dropped URL ids, "no results" state for filters.
 3. Lighthouse pass on `pnpm preview`; fix anything below 90 / 95 perf / a11y.
 4. Vercel deployment: add `vercel.json` if needed (likely not — Vite default works), connect repo, verify preview URLs on PRs.

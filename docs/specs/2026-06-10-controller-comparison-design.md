@@ -90,7 +90,7 @@ This is the most important design decision and the place we will diverge from a 
 Three top‑level views, all client‑side routed:
 
 1. **Browse (`/`)** — grid of controller cards. Filters in a left sidebar (compatibility multi‑select, connectivity multi‑select, joystick type, price range slider, on‑sale toggle, search box). Each card: image, name, base price (with strike‑through compare‑at price if on sale), key spec icons, "+ Compare" button (becomes "✓ In comparison" once selected, capped at 3).
-2. **Compare (`/compare`)** — table view. Columns = selected controllers (1–3). Rows grouped: **Pricing & availability**, **Connectivity**, **Compatibility**, **Sticks & inputs**, **Physical**, **Notes**. The "differences highlighted" rule: for each row, if not all visible columns share the same value, the row gets a subtle accent and differing cells get an emphasised background. A column header has the image, name, link out, and a small "✕ Remove" button. A "+ Add controller" column appears when fewer than 3 are selected.
+2. **Compare (`/compare`)** — comparison view, built with CSS Grid on divs (not a `<table>` — see §11 for why). At the top, a row of "header cards" (image, name, price, link out, ✕ Remove) per selected controller. Below that, a series of `<section>` groups — **Pricing & availability**, **Connectivity**, **Compatibility**, **Sticks & inputs**, **Physical**, **Notes** — each containing one row per attribute. A row is a label cell plus one value cell per controller. The "differences highlighted" rule: for each row, if not all visible columns share the same value, the row gets a subtle accent and differing cells get an emphasised background plus a small dot indicator (colour is never the only signal). A "+ Add controller" slot appears in the header row when fewer than 3 are selected.
 3. **Not‑found / empty states** — Compare with 0 selected redirects to Browse with a toast.
 
 A persistent **CompareBar** is rendered on Browse showing the current selection as chips with a "Compare (N)" CTA. It is suppressed on the Compare view itself.
@@ -127,9 +127,29 @@ Explicitly NOT used: Next.js (no SSR/server needs justify the complexity), Redux
 
 ## 11. Accessibility & responsive
 
-- The comparison table is a real `<table>` with proper `<th scope>` so screen readers announce row/column context. On narrow viewports (<768px) it switches to a stacked card‑per‑controller layout with each row repeated per card — easier to scan with one thumb.
+The comparison view is built with **CSS Grid on `<div>` elements, not `<table>`**. Reasons:
+
+- A `<table>` couples layout to a 2D grid that fights with responsive design — on mobile we want one column per controller stacked vertically, which is the opposite of what a table is built for.
+- We don't need 2D screen‑reader navigation. A linear "read each controller's section top to bottom" model matches how a user actually consumes a comparison on mobile, and it works equally well on desktop.
+
+Instead the structure is:
+
+- A `<section aria-label="Controller comparison">` wraps the whole thing.
+- Inside, a header row of "controller cards" (one per selected controller) with `<h2>` for the controller name.
+- A series of `<section>` groups (`<h3>` for the group name: Pricing, Connectivity, etc.), each containing rows.
+- A row is a label `<div>` + one value `<div>` per controller. Labels use the same wording across mobile and desktop so the relayout is purely visual.
+- Differing values are signalled with an accent background **and** a small icon — colour is never the only signal.
+
+Responsive behaviour:
+
+- Desktop (`≥ md`): grid template is `minmax(140px, auto) repeat(N, 1fr)`, label column on the left, controllers across the top.
+- Mobile (`< md`): grid template collapses to `1fr`. Each controller's header card and all its values are rendered as a vertical card; the label is shown inline with each value (e.g. "Connectivity: Bluetooth, 2.4G") so context is preserved. This is achieved by switching `display` on a per‑section basis with `@media`, not by re‑rendering.
+
+Other a11y items:
+
 - All interactive elements are buttons or links with visible focus rings (Tailwind `focus-visible:` utilities).
-- Colour is never the only signal of "different" — differing cells also get a small dot indicator.
+- Toasts go through a single `aria-live="polite"` region.
+- Keyboard: the compare bar is tabbable, each chip's ✕ is focusable, the "Compare (N)" CTA is the last tab stop in the bar.
 
 ## 12. Open questions / explicit assumptions
 
