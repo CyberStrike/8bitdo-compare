@@ -38,59 +38,89 @@ A small ReactJS web app that lets a shopper pick up to **3** 8BitDo controllers 
 
 ## 5. Data model
 
+Specs are an **open dictionary**, not a fixed struct. Different 8BitDo controllers expose different specs (RGB Fire Ring exists on Pro 3 but not Pro 2; Charging Dock is absent on most older models). Forcing a fixed schema would either drop the rare specs or pad them with `null` and hide the "this one has it, the others don't" signal — which is exactly the signal the user said they need (see §11 design directive: show every listed spec, that's how unique features become visible).
+
 ```ts
+type SpecValue =
+  | { kind: "text"; value: string }                    // "TMR Joysticks"
+  | { kind: "boolean"; value: boolean }                // Vibration: true
+  | { kind: "number"; value: number; unit: string }    // 1000, "mAh"
+  | { kind: "list"; value: string[] }                  // ["Switch 1/2", "Windows", "SteamOS"]
+  | { kind: "perPlatform"; value: Record<string, string> }; // { Switch: "Bluetooth, 2.4G, Wired", Windows: "2.4G, Wired" }
+
 type Controller = {
-  // Identity
-  id: string;                       // stable slug, e.g. "ultimate-2-wireless"
-  shopifyHandle: string;            // 8BitDo store product handle, used for URL + JSON lookup
+  // Identity (curated)
+  id: string;                       // stable slug, e.g. "pro-3"
+  shopifyHandle: string;            // 8BitDo store handle, used for shop URL + price lookup
+  officialSlug: string;             // 8BitDo marketing-site slug, e.g. "pro3" → 8bitdo.com/pro3
   name: string;                     // display name we pick (cleaned up from store title)
   storeTitle: string;               // exact title from the store, kept for traceability
   imageUrl: string;
-  productUrl: string;               // https://shop.8bitdo.com/products/<handle>
+  shopUrl: string;                  // https://shop.8bitdo.com/products/<handle>
+  officialUrl: string;              // https://www.8bitdo.com/<slug>/
 
-  // Pricing (sourced live from Shopify products.json)
+  // Pricing (sourced live from Shopify products.json, see §6)
   basePriceUSD: number;             // lowest available variant price
   compareAtPriceUSD: number | null; // strike-through price if on sale
   onSale: boolean;
   available: boolean;
 
-  // Specs (curated, see §6)
-  family: "Pro" | "Ultimate" | "Ultimate 2C" | "Retro" | "Micro" | "64" | "Other";
-  layout: "Switch-style" | "Xbox-style" | "Retro D-pad" | "N64-style" | "PCE-style";
-  connectivity: Array<"Bluetooth" | "2.4G" | "USB-C Wired" | "USB-A Wired">;
-  compatibility: Array<"Switch" | "Switch 2" | "PC (Windows)" | "macOS" | "Android" | "iOS" | "Steam" | "Steam Deck" | "Raspberry Pi" | "Analogue 3D">;
-  joystickType: "Standard" | "Hall Effect" | "TMR" | "None (D-pad only)";
-  rumble: boolean;
-  gyro: boolean;
-  motionAim: boolean;               // PS-style gyro aiming
-  batteryHours: number | null;      // null = wired only
-  weightGrams: number | null;
-  releaseYear: number | null;
-  notes?: string;                   // short freeform, e.g. "Pre-order, ships Feb 2026"
+  // Specs (curated from the 8bitdo.com product page comparison tables)
+  // Key is the canonical normalised spec label, e.g. "Joysticks", "Charging Dock"
+  // A controller simply omits specs it does not have, so absent != false unless the
+  // spec is canonically a boolean (Charging Dock, RGB Fire Ring, etc) where omission
+  // means "this model does not have one".
+  specs: Record<string, SpecValue>;
+
+  // Optional metadata
+  releaseYear?: number;
+  notes?: string;                   // freeform, e.g. "Pre-order, ships Feb 2026"
+};
+
+// Section assignment lives outside the Controller record so we can change grouping
+// without touching the data. Keys are canonical spec labels; values are section ids.
+type SpecCatalog = {
+  [canonicalLabel: string]: {
+    section: "connectivity" | "compatibility" | "sticks-and-triggers" | "buttons-and-feedback" | "battery-physical" | "software" | "other";
+    booleanByDefault?: boolean; // if true, absence means "no" rather than "unknown"
+    displayOrder: number;
+  };
 };
 ```
 
-## 6. Where the data comes from
+A single `SpecCatalog` lives next to the spec data and is the place that knows "Vibration is a boolean and absence means no" vs "Battery Capacity is a number and absence means unknown."
 
-This is the most important design decision and the place we will diverge from a naive "just hardcode it" plan.
+## 6. Where the data comes from
 
 | Field group | Source | Refresh model |
 | --- | --- | --- |
-| Price, availability, sale status, store title, image, product URL | Shopify Storefront JSON: `https://shop.8bitdo.com/collections/all-products/products.json?limit=250&page=N` (publicly accessible, returns full product objects including `variants[].price`, `variants[].available`, `featured_image.src`, `handle`) | Fetched live in the browser on app load; cached in `localStorage` for 24h with a "refresh" button |
-| Curated specs (connectivity, compatibility, joystick type, layout, rumble, gyro, weight, battery, family, notes) | A hand‑maintained `src/data/controllerSpecs.ts` file in the repo, keyed by `shopifyHandle` | Bumped manually when 8BitDo releases new controllers |
+| Price, availability, sale status, store title, image, shop URL | Shopify Storefront JSON: `https://shop.8bitdo.com/collections/all-products/products.json?limit=250&page=N` (public, CORS‑permissive — verified) | Fetched live in the browser on app load; cached in `localStorage` for 24h with a "refresh" button |
+| All specs (every row 8BitDo lists for the device) | `src/data/controllerSpecs.json` in the repo, hand‑curated from each product's official page at `https://www.8bitdo.com/<slug>/` | Bumped manually when 8BitDo updates the controller or ships a new one |
+| `SpecCatalog` (canonical label, section, type) | `src/data/specCatalog.ts` | Bumped when a new canonical spec label appears |
 
-**Why this split:** prices and availability change frequently and would go stale immediately if hardcoded; specs change essentially never per SKU. Curating specs is unavoidable because the Shopify API does not expose them in a structured form — they live in marketing copy on each product page, not in tags or metafields the storefront exposes. We deliberately do NOT try to scrape product‑page HTML at runtime: it's fragile, requires CORS workarounds, and the spec set per controller is small (~16 fields × ~16 controllers).
+**Why specs come from 8bitdo.com, not shop.8bitdo.com:** the marketing site for each product (e.g. `8bitdo.com/pro3/`) includes a structured "this model vs that model" comparison table. The rows of those tables are 8BitDo's own spec taxonomy — Color/Edition, Compatibility, Connectivity (broken out per platform), Triggers, Bumpers, Fast Bumpers, Joysticks, Polling Rate, Pro Back Paddle Buttons, 3.5mm Audio Jack, Charging Dock, 6‑axis Motion Control, Shake to wake, Vibration, Turbo, RGB Fire Ring, Ultimate Software Support, Battery Capacity, Dimensions/Weight. Using their taxonomy means we are showing the user the same labels they would see researching the product themselves, and the diff highlighting matches 8BitDo's own comparison framing.
 
-**CORS note:** `shop.8bitdo.com/collections/all-products/products.json` returns CORS headers permissive enough for browser fetches from any origin (verified manually). If 8BitDo ever locks this down, the fallback is a tiny serverless function (Vercel Edge Function or Cloudflare Worker) that proxies the call.
+**Why not scrape those pages at runtime:** the marketing pages do not have CORS headers for cross‑origin browser fetches, and the HTML layout is more brittle than the shop's JSON. Manual curation is fine at this scale (~7–8 controllers in v1 scope, see §12.1).
 
-**Merge step:** at app bootstrap, the live Shopify list is joined to the curated specs by `shopifyHandle`. Any controller present in Shopify but missing a spec entry is shown in the grid with a "Specs pending" badge and is excluded from the comparison table until specs are added — this keeps the spec file honest without crashing the app when 8BitDo releases something new.
+**Why this split** (live shop data + hand‑curated specs): prices and availability change frequently and would go stale immediately if hardcoded; specs change essentially never per SKU. Hand‑curation of specs is the same kind of work as making a spreadsheet to compare them, but it pays off in a reusable interface.
+
+**Normalisation note:** 8BitDo uses slightly different row labels across product pages ("Joysticks" vs "Joystick" vs "Stick Type"). The spec file uses one canonical label per concept; the original page label is preserved in a sibling `_source` field on each spec entry for traceability. The mapping from raw labels → canonical labels lives in `specCatalog.ts`.
+
+**Merge step:** at app bootstrap, the live Shopify list is joined to the curated specs by `shopifyHandle`. Any controller present in Shopify but missing a spec entry is shown in the grid with a "Specs pending" badge and is excluded from the comparison view until specs are added — this keeps the spec file honest without crashing the app when 8BitDo releases something new.
 
 ## 7. UI architecture
 
 Three top‑level views, all client‑side routed:
 
 1. **Browse (`/`)** — grid of controller cards. Filters in a left sidebar (compatibility multi‑select, connectivity multi‑select, joystick type, price range slider, on‑sale toggle, search box). Each card: image, name, base price (with strike‑through compare‑at price if on sale), key spec icons, "+ Compare" button (becomes "✓ In comparison" once selected, capped at 3).
-2. **Compare (`/compare`)** — comparison view, built with CSS Grid on divs (not a `<table>` — see §11 for why). At the top, a row of "header cards" (image, name, price, link out, ✕ Remove) per selected controller. Below that, a series of `<section>` groups — **Pricing & availability**, **Connectivity**, **Compatibility**, **Sticks & inputs**, **Physical**, **Notes** — each containing one row per attribute. A row is a label cell plus one value cell per controller. The "differences highlighted" rule: for each row, if not all visible columns share the same value, the row gets a subtle accent and differing cells get an emphasised background plus a small dot indicator (colour is never the only signal). A "+ Add controller" slot appears in the header row when fewer than 3 are selected.
+2. **Compare (`/compare`)** — comparison view, built with CSS Grid on divs (not a `<table>` — see §11 for why). At the top, a row of "header cards" (image, name, price, link out, ✕ Remove) per selected controller. Below that, a series of `<section>` groups — **Pricing & availability**, **Connectivity**, **Compatibility**, **Sticks & triggers**, **Buttons & feedback**, **Battery & physical**, **Software**, **Other** — each containing one row per spec the catalog assigns to that section. A row is a label cell plus one value cell per controller. The union of every spec across the selected controllers is rendered (so a spec only one of them has still gets a row), with empty cells in the controllers that don't list it.
+
+   **Diff highlighting has three states:**
+   - **All equal across visible columns** — row is quiet, no accent.
+   - **All present but values differ** — row gets a subtle accent and differing cells get an emphasised background plus a non‑colour indicator (small dot/icon).
+   - **Present on some, missing on others** — row gets a stronger accent and the "missing" cells get an explicit muted "—" with a tooltip "Not listed by 8BitDo for this model." These are the rows that surface unique features and are the most valuable signal in the whole view.
+
+   A "+ Add controller" slot appears in the header row when fewer than 3 are selected. Section groups with zero rows (because none of the selected controllers expose any spec in that section) are collapsed.
 3. **Not‑found / empty states** — Compare with 0 selected redirects to Browse with a toast.
 
 A persistent **CompareBar** is rendered on Browse showing the current selection as chips with a "Compare (N)" CTA. It is suppressed on the Compare view itself.
@@ -153,16 +183,20 @@ Other a11y items:
 
 ## 12. Open questions / explicit assumptions
 
-These are decisions I made without being able to ask interactively. Each is a candidate to revisit before implementation starts.
+Updated through user dialogue. Each remaining item is still a candidate to revisit.
 
-1. **Scope is "Game Controllers" only.** The store filter the user linked includes `product_type=Game Controllers`. We exclude mod kits, arcade sticks, keyboards, receivers. (Easy to broaden later by adding more product types to the spec file.)
-2. **"Base price" = lowest available variant price in USD.** Many 8BitDo controllers have multiple colorways or editions at different prices (e.g. Ultimate 2 "From $55.99"). Using the minimum matches what the store card shows.
-3. **Hand‑curated spec file is acceptable.** Alternative would be an LLM extraction pass over each product description, but that is over‑engineered for ~16 SKUs and would still need human review. The spec file is small and a contributor can add a new controller in one PR.
-4. **No backend.** Everything is static + a public Shopify JSON endpoint. If CORS ever changes we add a thin proxy then.
-5. **No price history / alerts.** Out of scope for v1.
-6. **3‑controller cap is enforced everywhere** — the URL parser caps, the reducer caps, the UI hides the "+ Compare" button at the cap.
-7. **Currency is USD only**, matching the official store. International users see USD.
-8. **Deployment target is Vercel.** Could also be GH Pages or Netlify; Vercel chosen for zero‑config preview deploys per PR.
+1. **Scope is the Switch / PC / Mac–compatible controllers.** Per user input: Switch (1 & 2), Windows, macOS. That prunes the v1 catalog to ~7–8 SKUs (Pro 3, Pro 2 + Hall Effect, Ultimate 2 Wireless, Ultimate 2 Bluetooth, Ultimate 2C Wireless (PC), Ultimate 2C Wired, SN30 Pro Hall Effect, Lite 2). Retro‑only and Analogue 3D–targeted SKUs are excluded. (The Shopify fetcher still pulls everything; the catalog filter is one place to broaden later.)
+2. **"Base price" = lowest available variant price in USD**, matching what the store card shows for "From $X" controllers.
+3. **No budget cap** per user — full price range in scope.
+4. **Spec model is open** (`Record<string, SpecValue>`), not a fixed struct, because 8BitDo's published spec sets differ per controller and "this one has Feature X and the other doesn't" is the signal we most want to surface.
+5. **Specs come from the 8bitdo.com marketing pages** (not the shop's `body_html`), curated by hand into `controllerSpecs.json`. ~7–8 controllers × ~20 spec rows is a small one‑time pull.
+6. **No backend.** Public Shopify JSON + static spec file. Fallback to a thin Vercel Edge proxy only if Shopify's CORS ever changes.
+7. **No price history / alerts.** Out of scope for v1.
+8. **3‑controller cap enforced everywhere** — URL parser, reducer, UI.
+9. **Currency is USD only**, matching the official store.
+10. **Comparison view uses CSS Grid on `<div>`s, not `<table>`** (per user, see §11).
+11. **Deployment target is Vercel** (could also be GH Pages or Netlify; Vercel chosen for zero‑config preview deploys per PR).
+12. **Purpose:** personal one‑shot tool, outcome over polish, possible implementation tweaks later — this calibrates "MVP first, polish only where it serves the comparison."
 
 ## 13. Success criteria
 

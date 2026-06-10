@@ -23,41 +23,35 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
 
 ## Phase 1 — Data layer
 
-**Goal:** the merged `Controller[]` is observable in‑app, with live prices from Shopify and curated specs from the repo.
+**Goal:** the merged `Controller[]` is observable in‑app, with live prices from Shopify and the full per‑device spec set from a hand‑curated file.
 
-1. Define `src/types/controller.ts` matching §5 of the design doc.
-2. Create `src/data/controllerSpecs.ts` with hand‑curated entries for the controllers currently on the linked store page:
+1. Define `src/types/controller.ts` matching §5 of the design doc (`SpecValue` union, `Controller` with open `specs: Record<string, SpecValue>`, `SpecCatalog` typed separately).
+2. Create `src/data/specCatalog.ts` — the canonical list of every spec label we know about, each with `{ section, booleanByDefault, displayOrder }`. Seed it from the rows on the Pro 3 and Ultimate 2 marketing‑page comparison tables (Color/Edition, Compatibility, Connectivity, Triggers, Bumpers, Fast Bumpers (L4/R4), Joysticks, Wear‑resistant Joystick Rings, Polling Rate, Pro Back Paddle Buttons, 3.5mm Audio Jack, Charging Dock, 6‑axis Motion Control, Shake to wake, Vibration, Turbo, RGB Fire Ring, Ultimate Software Support, Battery Capacity, Dimensions, Weight). Also include a raw‑label → canonical‑label map so per‑page label variations collapse.
+3. Create `src/data/controllerSpecs.json` with one entry per in‑scope controller. **In scope after the user's Switch/PC/Mac answer:**
    - `8bitdo-pro-3-bluetooth-gamepad`
-   - `8bitdo-pro-2-bluetooth-controller` (Hall Effect + Special Edition share base specs; treat as one entry with notes)
+   - `8bitdo-pro-2-bluetooth-controller` (treat Hall Effect and Special Edition as the same base spec entry; note the joystick‑tech difference in the `Joysticks` row by having two SKU entries that share most rows)
    - `8bitdo-ultimate-2-wireless-controller`
    - `8bitdo-ultimate-2-bluetooth-controller`
    - `8bitdo-ultimate-2c-wireless-controller-pc`
    - `8bitdo-ultimate-2c-wired-controller`
    - `8bitdo-sn30-pro-hall-effect-joystick`
-   - `8bitdo-sn30-2-4g`
    - `8bitdo-lite-2`
-   - `8bitdo-m30`
-   - `8bitdo-zero-2`
-   - `8bitdo-pce-2-4g`
-   - `8bitdo-64-bluetooth-controller-funtastic`
-   - `8bitdo-64-bluetooth-controller-prototype`
-   - `8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight` (treat as cosmetic variant of Ultimate 2; spec entry points at base spec with a `cosmeticOf` field, or duplicate with a `notes` line — start with the latter for simplicity).
-   Each entry is filled from the corresponding product page on shop.8bitdo.com. The file is the project's source of truth for specs.
-3. Implement `src/services/shopify.ts`:
+   Each entry's specs are filled from the corresponding `8bitdo.com/<slug>/` marketing page — the comparison table on that page IS the spec source. The file is the project's source of truth for specs.
+4. Implement `src/services/shopify.ts`:
    - `fetchControllerProducts(): Promise<ShopifyProduct[]>` that pages `https://shop.8bitdo.com/collections/all-products/products.json?limit=250&page=N` until an empty page is returned, filters to `product_type === "Game Controllers"`.
    - Normalises each product into the subset of fields we care about (`handle`, `title`, `featured_image`, lowest available `variants[].price`, `compare_at_price`, `available`).
-4. Implement `src/services/catalog.ts` — `loadCatalog()`:
+5. Implement `src/services/catalog.ts` — `loadCatalog()`:
    - Calls `fetchControllerProducts()`.
-   - Joins to `controllerSpecs` by `handle`.
-   - For products missing a spec entry, returns a `Controller` with `family: "Other"` and a `specsPending: true` flag (extend the type) so the UI can label and disable them.
-   - Caches the merged result in `localStorage` under `catalog:v1` with a `fetchedAt` timestamp; on the next load returns the cache immediately and revalidates in the background (stale‑while‑revalidate).
-5. Build `data/fallbackPrices.json` once (a snapshot of the merged catalog with `fetchedAt`) and ship it as the bootstrap fallback for the very first load when Shopify is unreachable. Add a script `pnpm refresh-fallback` that regenerates it by running the same Shopify code in Node.
-6. Tests:
+   - Joins to `controllerSpecs.json` by `shopifyHandle`. Products without an entry are flagged `specsPending: true` and are listed in the grid but excluded from comparison.
+   - Caches the merged result in `localStorage` under `catalog:v1` with a `fetchedAt` timestamp; stale‑while‑revalidate on subsequent loads.
+6. Build `data/fallbackCatalog.json` once (a snapshot of the merged catalog with `fetchedAt`) and ship it as the bootstrap fallback for the very first load when Shopify is unreachable. Add a script `pnpm refresh-fallback` that regenerates it.
+7. Tests:
    - Unit test for the price‑minimum logic (multiple variants, some unavailable, sale prices).
    - Unit test for the merge: spec found, spec missing, Shopify product missing.
    - Unit test for the cache: stale read, fresh write.
+   - Unit test for the raw‑label normalisation in `specCatalog.ts`.
 
-**Exit criterion:** in a small dev page, the merged catalog renders as a JSON dump with correct prices.
+**Exit criterion:** in a small dev page, the merged catalog renders as a JSON dump with correct prices and the full spec set per controller.
 
 ## Phase 2 — Browse view
 
@@ -84,14 +78,19 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
 **Goal:** the selected controllers render as a side‑by‑side comparison with differences highlighted.
 
 1. `/compare` route reads `ids` from the query string, resolves to `Controller[]`, drops missing ones with a toast.
-2. `ComparisonGrid` component — built with CSS Grid on `<div>` elements (no `<table>`, see design §11). Rows grouped into `<section>`s (`Pricing & availability`, `Connectivity`, `Compatibility`, `Sticks & inputs`, `Physical`, `Notes`). Each row is a `{ label, values: ValueRenderer[] }`. The renderer is per‑attribute (price formatter, list‑of‑pill renderer, boolean check/✕, etc).
-3. Difference highlighting — a small `areAllEqual(values)` helper. Rows where this is false get an accent border; differing cells get an emphasised background. Equal rows are quiet visually.
+2. `ComparisonGrid` component — built with CSS Grid on `<div>` elements (no `<table>`, see design §11). Rows are derived from the union of all `specs` keys across the selected controllers, then grouped by the section assigned in `specCatalog.ts` (`Pricing & availability`, `Connectivity`, `Compatibility`, `Sticks & triggers`, `Buttons & feedback`, `Battery & physical`, `Software`, `Other`). Each row is a `{ canonicalLabel, values: SpecValue[] }` where `values[i]` is the spec value for the `i`th selected controller (or a `missing` marker if that controller does not list this spec). The renderer is per‑`SpecValue.kind` (price formatter for pricing rows, list‑of‑pill renderer for `list`, boolean check/✕ for `boolean`, key:value table for `perPlatform`, etc).
+3. Three‑state difference highlighting (per design §7):
+   - **All equal** → quiet row.
+   - **All present but values differ** → row accent + emphasised cell background + non‑colour dot indicator on differing cells.
+   - **Present on some, missing on others** → stronger row accent; missing cells render `—` with a tooltip. A small `classifyRow(values, catalogEntry)` helper returns one of `"equal" | "differ" | "partial"`.
+   Section groups that end up with zero rows after filtering (none of the selected controllers expose any spec in that section) are collapsed.
 4. Column header — image, name, sale badge, link to the official product page, "✕ Remove" button that updates `CompareContext` and the URL.
 5. Empty‑column slot when fewer than 3 are selected — a "+ Add controller" cell that links back to `/`.
 6. Responsive: the grid template collapses from `minmax(140px, auto) repeat(N, 1fr)` on `≥ md` to `1fr` on `< md`. On mobile each controller becomes a vertical card with the row label shown inline next to each value (e.g. "Connectivity: Bluetooth, 2.4G"). Same DOM, different `grid-template-columns` and a couple of `display` swaps — no conditional rendering.
 7. Tests:
-   - `areAllEqual` unit tests across each value type (array order, null vs missing, numeric).
-   - RTL test: render with 3 fixture controllers, assert that the price row has the differences accent and the two equal `rumble: true` cells do not.
+   - `classifyRow` unit tests across each `SpecValue.kind` and all three classification outcomes (equal / differ / partial), including array order normalisation for `list` and key‑order normalisation for `perPlatform`.
+   - Row‑derivation unit test: union of spec keys across 3 controllers produces the expected ordered row list per section.
+   - RTL test: render with 3 fixture controllers — assert that the price row has the differ accent, the equal Vibration row is quiet, and an "RGB Fire Ring" row present on only one controller renders the partial accent + `—` cells for the other two.
 
 **Exit criterion:** dropping 2–3 fixtures into the URL produces a readable comparison; removing a column updates URL + state in sync.
 
