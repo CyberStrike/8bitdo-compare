@@ -11,16 +11,16 @@ When Phase 0/1 lands, both files move into `src/data/` (their final home per the
 
 8 controllers, all candidates from the user's "Switch + PC + Mac" use case:
 
-| Controller | Switch | PC | Mac |
-| --- | --- | --- | --- |
-| Pro 3 | ✓ | ✓ | ✓ |
-| Pro 2 (Hall Effect) | ✓ | ✓ | ✓ |
-| SN30 Pro (Hall Effect) | ✓ | ✓ | ✓ |
-| Ultimate 2 Bluetooth | ✓ | ✓ | ✗ |
-| Ultimate 2 Wireless | ✗ | ✓ | ✓ |
-| Ultimate 2C Wireless (PC) | ✗ | ✓ | ✗ |
-| Ultimate 2C Wired | ✗ | ✓ | ✗ |
-| Lite 2 | ✓ | ✗ | ✓ |
+| Controller                | Switch | PC  | Mac |
+| ------------------------- | ------ | --- | --- |
+| Pro 3                     | ✓      | ✓   | ✓   |
+| Pro 2 (Hall Effect)       | ✓      | ✓   | ✓   |
+| SN30 Pro (Hall Effect)    | ✓      | ✓   | ✓   |
+| Ultimate 2 Bluetooth      | ✓      | ✓   | ✗   |
+| Ultimate 2 Wireless       | ✗      | ✓   | ✓   |
+| Ultimate 2C Wireless (PC) | ✗      | ✓   | ✗   |
+| Ultimate 2C Wired         | ✗      | ✓   | ✗   |
+| Lite 2                    | ✓      | ✗   | ✓   |
 
 Only Pro 3, Pro 2, and SN30 Pro cover all three target platforms in a single device. The comparison view exists to surface this kind of asymmetry — the other 5 are still in the dataset so the user can see what they'd be giving up by going budget‑per‑platform vs flagship‑for‑everything.
 

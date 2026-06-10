@@ -7,19 +7,21 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
 
 ---
 
-## Phase 0 — Repository scaffolding
+## Phase 0 — Repository scaffolding ✅
+
+**Status:** done — landed on `cursor/initial-project-plan-2069`.
 
 **Goal:** a `pnpm dev` that boots an empty React + TypeScript app, with linting, formatting, and CI smoke‑checking PRs.
 
-1. `pnpm create vite@latest . -- --template react-ts`, accepting the standard layout. Move generated files into the existing repo (don't overwrite `LICENSE` / `README.md`).
-2. Install Tailwind CSS following the official Vite guide. Wire `index.css` to include the three Tailwind directives.
-3. Install `react-router-dom`, `lucide-react`, `clsx`.
-4. Install dev deps: `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `jsdom`, `eslint-plugin-react`, `prettier`, `eslint-config-prettier`.
-5. Add scripts: `dev`, `build`, `preview`, `test`, `test:watch`, `lint`, `format`.
-6. Add a minimal `.github/workflows/ci.yml` running `pnpm install`, `pnpm lint`, `pnpm test --run`, `pnpm build` on every PR.
-7. Update `README.md` with quickstart, what the app does, and a link to the design doc.
+1. ✅ Scaffolded with `pnpm create vite@latest --template react-ts` (Vite 8, React 19, TypeScript 6 — newer than originally planned, adopted as the current Vite default). Files merged into the repo without overwriting `LICENSE`, `README.md`, `docs/`, or `data/`.
+2. ✅ Tailwind CSS **v4** wired via `@tailwindcss/vite` plugin and `@import "tailwindcss"` in `src/index.css` — the v4 setup replaces the old `tailwind.config.js` + PostCSS dance.
+3. ✅ `react-router-dom` v7, `lucide-react`, `clsx` installed (router not yet used; Phase 2 wires it).
+4. ✅ Dev deps: `vitest`, `@vitest/coverage-v8`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`, `jsdom`, `prettier`, `eslint-config-prettier`. ESLint is the flat config that ships with the Vite template, extended with the Prettier config to disable formatting rules.
+5. ✅ Scripts: `dev`, `build`, `preview`, `test`, `test:watch`, `test:coverage`, `lint`, `format`, `format:check`.
+6. ✅ `.github/workflows/ci.yml` runs `pnpm install --frozen-lockfile` then `lint`, `format:check`, `test`, `build` on every push/PR (Node 22, pnpm 10).
+7. ✅ `README.md` updated with quickstart, script table, project layout, and links to the planning docs.
 
-**Exit criterion:** clean `pnpm dev` shows a blank page; CI is green on the scaffolding PR.
+**Exit criterion (met):** `pnpm dev` boots, all four CI gates pass locally.
 
 ## Phase 1 — Data layer
 
@@ -36,7 +38,7 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
    - `8bitdo-ultimate-2c-wired-controller`
    - `8bitdo-sn30-pro-hall-effect-joystick`
    - `8bitdo-lite-2`
-   Each entry's specs are filled from the corresponding `8bitdo.com/<slug>/` marketing page — the comparison table on that page IS the spec source. The file is the project's source of truth for specs.
+     Each entry's specs are filled from the corresponding `8bitdo.com/<slug>/` marketing page — the comparison table on that page IS the spec source. The file is the project's source of truth for specs.
 4. Implement `src/services/shopify.ts`:
    - `fetchControllerProducts(): Promise<ShopifyProduct[]>` that pages `https://shop.8bitdo.com/collections/all-products/products.json?limit=250&page=N` until an empty page is returned, filters to `product_type === "Game Controllers"`.
    - Normalises each product into the subset of fields we care about (`handle`, `title`, `featured_image`, lowest available `variants[].price`, `compare_at_price`, `available`).
@@ -83,7 +85,7 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
    - **All equal** → quiet row.
    - **All present but values differ** → row accent + emphasised cell background + non‑colour dot indicator on differing cells.
    - **Present on some, missing on others** → stronger row accent; missing cells render `—` with a tooltip. A small `classifyRow(values, catalogEntry)` helper returns one of `"equal" | "differ" | "partial"`.
-   Section groups that end up with zero rows after filtering (none of the selected controllers expose any spec in that section) are collapsed.
+     Section groups that end up with zero rows after filtering (none of the selected controllers expose any spec in that section) are collapsed.
 4. Column header — image, name, sale badge, link to the official product page, "✕ Remove" button that updates `CompareContext` and the URL.
 5. Empty‑column slot when fewer than 3 are selected — a "+ Add controller" cell that links back to `/`.
 6. Responsive: the grid template collapses from `minmax(140px, auto) repeat(N, 1fr)` on `≥ md` to `1fr` on `< md`. On mobile each controller becomes a vertical card with the row label shown inline next to each value (e.g. "Connectivity: Bluetooth, 2.4G"). Same DOM, different `grid-template-columns` and a couple of `display` swaps — no conditional rendering.
@@ -110,13 +112,13 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
 
 ## Risks & how each is addressed
 
-| Risk | Mitigation |
-| --- | --- |
-| 8BitDo locks `products.json` behind CORS | Add a tiny Vercel Edge Function proxy; the rest of the app does not change because `shopify.ts` is the only caller. |
-| Spec file drifts as 8BitDo releases new controllers | `specsPending: true` path keeps the app functional; CI can grow a daily job that diffs Shopify's catalog against the spec file and opens an issue. Out of scope for v1, but cheap to add. |
-| "Base price" misrepresents bundles where the cheapest variant is a stripped SKU | We display the same number the store card shows. If this is ever misleading for a specific controller, add a `priceFloorOverride` field to the spec entry. |
-| Shopify pagination shape changes | The fetcher pages until an empty response and is the only contact point with Shopify; one focused unit test pins the shape we depend on. |
-| Project bloats with feature requests | Non‑goals in the design doc are explicit. New asks land as separate spec docs, not as scope creep on v1. |
+| Risk                                                                            | Mitigation                                                                                                                                                                                |
+| ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 8BitDo locks `products.json` behind CORS                                        | Add a tiny Vercel Edge Function proxy; the rest of the app does not change because `shopify.ts` is the only caller.                                                                       |
+| Spec file drifts as 8BitDo releases new controllers                             | `specsPending: true` path keeps the app functional; CI can grow a daily job that diffs Shopify's catalog against the spec file and opens an issue. Out of scope for v1, but cheap to add. |
+| "Base price" misrepresents bundles where the cheapest variant is a stripped SKU | We display the same number the store card shows. If this is ever misleading for a specific controller, add a `priceFloorOverride` field to the spec entry.                                |
+| Shopify pagination shape changes                                                | The fetcher pages until an empty response and is the only contact point with Shopify; one focused unit test pins the shape we depend on.                                                  |
+| Project bloats with feature requests                                            | Non‑goals in the design doc are explicit. New asks land as separate spec docs, not as scope creep on v1.                                                                                  |
 
 ## What I did NOT include and why
 

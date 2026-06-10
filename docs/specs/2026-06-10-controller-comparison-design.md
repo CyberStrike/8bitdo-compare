@@ -42,61 +42,68 @@ Specs are an **open dictionary**, not a fixed struct. Different 8BitDo controlle
 
 ```ts
 type SpecValue =
-  | { kind: "text"; value: string }                    // "TMR Joysticks"
-  | { kind: "boolean"; value: boolean }                // Vibration: true
-  | { kind: "number"; value: number; unit: string }    // 1000, "mAh"
-  | { kind: "list"; value: string[] }                  // ["Switch 1/2", "Windows", "SteamOS"]
-  | { kind: "perPlatform"; value: Record<string, string> }; // { Switch: "Bluetooth, 2.4G, Wired", Windows: "2.4G, Wired" }
+  | { kind: 'text'; value: string } // "TMR Joysticks"
+  | { kind: 'boolean'; value: boolean } // Vibration: true
+  | { kind: 'number'; value: number; unit: string } // 1000, "mAh"
+  | { kind: 'list'; value: string[] } // ["Switch 1/2", "Windows", "SteamOS"]
+  | { kind: 'perPlatform'; value: Record<string, string> } // { Switch: "Bluetooth, 2.4G, Wired", Windows: "2.4G, Wired" }
 
 type Controller = {
   // Identity (curated)
-  id: string;                       // stable slug, e.g. "pro-3"
-  shopifyHandle: string;            // 8BitDo store handle, used for shop URL + price lookup
-  officialSlug: string;             // 8BitDo marketing-site slug, e.g. "pro3" → 8bitdo.com/pro3
-  name: string;                     // display name we pick (cleaned up from store title)
-  storeTitle: string;               // exact title from the store, kept for traceability
-  imageUrl: string;
-  shopUrl: string;                  // https://shop.8bitdo.com/products/<handle>
-  officialUrl: string;              // https://www.8bitdo.com/<slug>/
+  id: string // stable slug, e.g. "pro-3"
+  shopifyHandle: string // 8BitDo store handle, used for shop URL + price lookup
+  officialSlug: string // 8BitDo marketing-site slug, e.g. "pro3" → 8bitdo.com/pro3
+  name: string // display name we pick (cleaned up from store title)
+  storeTitle: string // exact title from the store, kept for traceability
+  imageUrl: string
+  shopUrl: string // https://shop.8bitdo.com/products/<handle>
+  officialUrl: string // https://www.8bitdo.com/<slug>/
 
   // Pricing (sourced live from Shopify products.json, see §6)
-  basePriceUSD: number;             // lowest available variant price
-  compareAtPriceUSD: number | null; // strike-through price if on sale
-  onSale: boolean;
-  available: boolean;
+  basePriceUSD: number // lowest available variant price
+  compareAtPriceUSD: number | null // strike-through price if on sale
+  onSale: boolean
+  available: boolean
 
   // Specs (curated from the 8bitdo.com product page comparison tables)
   // Key is the canonical normalised spec label, e.g. "Joysticks", "Charging Dock"
   // A controller simply omits specs it does not have, so absent != false unless the
   // spec is canonically a boolean (Charging Dock, RGB Fire Ring, etc) where omission
   // means "this model does not have one".
-  specs: Record<string, SpecValue>;
+  specs: Record<string, SpecValue>
 
   // Optional metadata
-  releaseYear?: number;
-  notes?: string;                   // freeform, e.g. "Pre-order, ships Feb 2026"
-};
+  releaseYear?: number
+  notes?: string // freeform, e.g. "Pre-order, ships Feb 2026"
+}
 
 // Section assignment lives outside the Controller record so we can change grouping
 // without touching the data. Keys are canonical spec labels; values are section ids.
 type SpecCatalog = {
   [canonicalLabel: string]: {
-    section: "connectivity" | "compatibility" | "sticks-and-triggers" | "buttons-and-feedback" | "battery-physical" | "software" | "other";
-    booleanByDefault?: boolean; // if true, absence means "no" rather than "unknown"
-    displayOrder: number;
-  };
-};
+    section:
+      | 'connectivity'
+      | 'compatibility'
+      | 'sticks-and-triggers'
+      | 'buttons-and-feedback'
+      | 'battery-physical'
+      | 'software'
+      | 'other'
+    booleanByDefault?: boolean // if true, absence means "no" rather than "unknown"
+    displayOrder: number
+  }
+}
 ```
 
 A single `SpecCatalog` lives next to the spec data and is the place that knows "Vibration is a boolean and absence means no" vs "Battery Capacity is a number and absence means unknown."
 
 ## 6. Where the data comes from
 
-| Field group | Source | Refresh model |
-| --- | --- | --- |
+| Field group                                                    | Source                                                                                                                                          | Refresh model                                                                                     |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | Price, availability, sale status, store title, image, shop URL | Shopify Storefront JSON: `https://shop.8bitdo.com/collections/all-products/products.json?limit=250&page=N` (public, CORS‑permissive — verified) | Fetched live in the browser on app load; cached in `localStorage` for 24h with a "refresh" button |
-| All specs (every row 8BitDo lists for the device) | `src/data/controllerSpecs.json` in the repo, hand‑curated from each product's official page at `https://www.8bitdo.com/<slug>/` | Bumped manually when 8BitDo updates the controller or ships a new one |
-| `SpecCatalog` (canonical label, section, type) | `src/data/specCatalog.ts` | Bumped when a new canonical spec label appears |
+| All specs (every row 8BitDo lists for the device)              | `src/data/controllerSpecs.json` in the repo, hand‑curated from each product's official page at `https://www.8bitdo.com/<slug>/`                 | Bumped manually when 8BitDo updates the controller or ships a new one                             |
+| `SpecCatalog` (canonical label, section, type)                 | `src/data/specCatalog.ts`                                                                                                                       | Bumped when a new canonical spec label appears                                                    |
 
 **Why specs come from 8bitdo.com, not shop.8bitdo.com:** the marketing site for each product (e.g. `8bitdo.com/pro3/`) includes a structured "this model vs that model" comparison table. The rows of those tables are 8BitDo's own spec taxonomy — Color/Edition, Compatibility, Connectivity (broken out per platform), Triggers, Bumpers, Fast Bumpers, Joysticks, Polling Rate, Pro Back Paddle Buttons, 3.5mm Audio Jack, Charging Dock, 6‑axis Motion Control, Shake to wake, Vibration, Turbo, RGB Fire Ring, Ultimate Software Support, Battery Capacity, Dimensions/Weight. Using their taxonomy means we are showing the user the same labels they would see researching the product themselves, and the diff highlighting matches 8BitDo's own comparison framing.
 
@@ -121,6 +128,7 @@ Three top‑level views, all client‑side routed:
    - **Present on some, missing on others** — row gets a stronger accent and the "missing" cells get an explicit muted "—" with a tooltip "Not listed by 8BitDo for this model." These are the rows that surface unique features and are the most valuable signal in the whole view.
 
    A "+ Add controller" slot appears in the header row when fewer than 3 are selected. Section groups with zero rows (because none of the selected controllers expose any spec in that section) are collapsed.
+
 3. **Not‑found / empty states** — Compare with 0 selected redirects to Browse with a toast.
 
 A persistent **CompareBar** is rendered on Browse showing the current selection as chips with a "Compare (N)" CTA. It is suppressed on the Compare view itself.
@@ -136,15 +144,15 @@ The comparison selection is also reflected in the URL on `/compare?ids=a,b,c` so
 
 ## 9. Tech stack
 
-| Concern | Choice | Reason |
-| --- | --- | --- |
-| Framework | **Vite + React 18 + TypeScript** | User asked for ReactJS. Vite gives instant dev server and a static build that drops onto Vercel/Netlify/GitHub Pages. TypeScript pays for itself given the structured `Controller` model. |
-| Routing | **React Router v6** | Two routes, simplest viable choice. |
-| Styling | **Tailwind CSS** + a few hand‑rolled components | Comparison tables need a lot of one‑off layout; utility classes are faster than maintaining a component library here. Avoids pulling in a heavy UI kit for two screens. |
-| Icons | **lucide-react** | Small footprint, good coverage for compatibility/connectivity glyphs. |
-| Testing | **Vitest** + **React Testing Library** | Vite‑native, fast. We test the data merge and the difference‑highlighting reducer; UI gets a smoke test per route. |
-| Lint/format | ESLint + Prettier with the Vite React‑TS template defaults | Standard. |
-| Deployment | **Vercel** (static build) | One‑click from GitHub, free tier covers this trivially, the URL is shareable. |
+| Concern     | Choice                                                     | Reason                                                                                                                                                                                                                                                   |
+| ----------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework   | **Vite 8 + React 19 + TypeScript 6**                       | User asked for ReactJS. Vite gives instant dev server and a static build that drops onto Vercel/Netlify/GitHub Pages. TypeScript pays for itself given the structured `Controller` model. Scaffolded with `pnpm create vite@latest --template react-ts`. |
+| Routing     | **React Router v7**                                        | Two routes, simplest viable choice.                                                                                                                                                                                                                      |
+| Styling     | **Tailwind CSS v4** (`@tailwindcss/vite` plugin)           | Comparison tables need a lot of one‑off layout; utility classes are faster than maintaining a component library here. v4 ships as a Vite plugin with `@import "tailwindcss"` in CSS — no `tailwind.config.js` or PostCSS dance.                          |
+| Icons       | **lucide-react**                                           | Small footprint, good coverage for compatibility/connectivity glyphs.                                                                                                                                                                                    |
+| Testing     | **Vitest** + **React Testing Library**                     | Vite‑native, fast. We test the data merge and the difference‑highlighting reducer; UI gets a smoke test per route.                                                                                                                                       |
+| Lint/format | ESLint + Prettier with the Vite React‑TS template defaults | Standard.                                                                                                                                                                                                                                                |
+| Deployment  | **Vercel** (static build)                                  | One‑click from GitHub, free tier covers this trivially, the URL is shareable.                                                                                                                                                                            |
 
 Explicitly NOT used: Next.js (no SSR/server needs justify the complexity), Redux, Storybook, a component library.
 

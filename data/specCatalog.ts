@@ -23,17 +23,17 @@
  */
 
 export type SpecSection =
-  | "identity"
-  | "connectivity"
-  | "compatibility"
-  | "sticks-and-triggers"
-  | "buttons-and-feedback"
-  | "battery-physical"
-  | "software"
-  | "other";
+  | 'identity'
+  | 'connectivity'
+  | 'compatibility'
+  | 'sticks-and-triggers'
+  | 'buttons-and-feedback'
+  | 'battery-physical'
+  | 'software'
+  | 'other'
 
 export type SpecCatalogEntry = {
-  section: SpecSection;
+  section: SpecSection
   /**
    * When `true`, a controller that does NOT list this spec is treated as
    * "does not have this feature" rather than "unknown."
@@ -41,82 +41,82 @@ export type SpecCatalogEntry = {
    * Use this only for binary features where 8BitDo's convention is that
    * presence in the comparison table = has it, absence = doesn't have it.
    */
-  booleanByDefault?: boolean;
+  booleanByDefault?: boolean
   /**
    * Sort order within the section.
    */
-  displayOrder: number;
-};
+  displayOrder: number
+}
 
 export const specCatalog: Record<string, SpecCatalogEntry> = {
-  "Color/Edition": { section: "identity", displayOrder: 10 },
-  Layout: { section: "identity", displayOrder: 20 },
+  'Color/Edition': { section: 'identity', displayOrder: 10 },
+  Layout: { section: 'identity', displayOrder: 20 },
 
-  Compatibility: { section: "compatibility", displayOrder: 10 },
+  Compatibility: { section: 'compatibility', displayOrder: 10 },
 
-  Connectivity: { section: "connectivity", displayOrder: 10 },
-  "2.4G Adapter": { section: "connectivity", displayOrder: 20 },
-  "Polling Rate": { section: "connectivity", displayOrder: 30 },
+  Connectivity: { section: 'connectivity', displayOrder: 10 },
+  '2.4G Adapter': { section: 'connectivity', displayOrder: 20 },
+  'Polling Rate': { section: 'connectivity', displayOrder: 30 },
 
-  Joysticks: { section: "sticks-and-triggers", displayOrder: 10 },
-  "Wear-resistant Joystick Rings": {
-    section: "sticks-and-triggers",
+  Joysticks: { section: 'sticks-and-triggers', displayOrder: 10 },
+  'Wear-resistant Joystick Rings': {
+    section: 'sticks-and-triggers',
     booleanByDefault: true,
     displayOrder: 20,
   },
-  Triggers: { section: "sticks-and-triggers", displayOrder: 30 },
-  Bumpers: { section: "sticks-and-triggers", displayOrder: 40 },
-  "Fast Bumpers (L4/R4)": {
-    section: "sticks-and-triggers",
+  Triggers: { section: 'sticks-and-triggers', displayOrder: 30 },
+  Bumpers: { section: 'sticks-and-triggers', displayOrder: 40 },
+  'Fast Bumpers (L4/R4)': {
+    section: 'sticks-and-triggers',
     booleanByDefault: true,
     displayOrder: 50,
   },
 
-  "Pro Back Paddle Buttons": {
-    section: "buttons-and-feedback",
+  'Pro Back Paddle Buttons': {
+    section: 'buttons-and-feedback',
     booleanByDefault: true,
     displayOrder: 10,
   },
-  "3.5mm Audio Jack": {
-    section: "buttons-and-feedback",
+  '3.5mm Audio Jack': {
+    section: 'buttons-and-feedback',
     booleanByDefault: true,
     displayOrder: 20,
   },
-  "6-axis Motion Control": {
-    section: "buttons-and-feedback",
+  '6-axis Motion Control': {
+    section: 'buttons-and-feedback',
     booleanByDefault: true,
     displayOrder: 30,
   },
   Vibration: {
-    section: "buttons-and-feedback",
+    section: 'buttons-and-feedback',
     booleanByDefault: true,
     displayOrder: 40,
   },
   Turbo: {
-    section: "buttons-and-feedback",
+    section: 'buttons-and-feedback',
     booleanByDefault: true,
     displayOrder: 50,
   },
-  "Shake to wake": { section: "buttons-and-feedback", displayOrder: 60 },
-  "RGB Fire Ring": {
-    section: "buttons-and-feedback",
+  'Shake to wake': { section: 'buttons-and-feedback', displayOrder: 60 },
+  'RGB Fire Ring': {
+    section: 'buttons-and-feedback',
     booleanByDefault: true,
     displayOrder: 70,
   },
 
-  "Charging Dock": {
-    section: "battery-physical",
+  'Charging Dock': {
+    section: 'battery-physical',
     booleanByDefault: true,
     displayOrder: 10,
   },
-  "Battery Capacity": { section: "battery-physical", displayOrder: 20 },
-  "Battery Life": { section: "battery-physical", displayOrder: 30 },
-  Dimensions: { section: "battery-physical", displayOrder: 40 },
-  Weight: { section: "battery-physical", displayOrder: 50 },
+  'Battery Capacity': { section: 'battery-physical', displayOrder: 20 },
+  'Battery Life': { section: 'battery-physical', displayOrder: 30 },
+  Dimensions: { section: 'battery-physical', displayOrder: 40 },
+  Weight: { section: 'battery-physical', displayOrder: 50 },
 
-  "Ultimate Software Support": { section: "software", displayOrder: 10 },
-  "Mode Switch": { section: "software", displayOrder: 20 },
-};
+  'Ultimate Software Support': { section: 'software', displayOrder: 10 },
+  'Mode Switch': { section: 'software', displayOrder: 20 },
+}
 
 /**
  * 8BitDo writes the same spec slightly differently across product pages.
@@ -126,27 +126,27 @@ export const specCatalog: Record<string, SpecCatalogEntry> = {
  * page's data, drop any unseen raw labels in here.
  */
 export const rawLabelToCanonical: Record<string, keyof typeof specCatalog> = {
-  "Color/Edition": "Color/Edition",
-  Layout: "Layout",
-  Compatibility: "Compatibility",
-  Connectivity: "Connectivity",
-  Triggers: "Triggers",
-  Bumpers: "Bumpers",
-  "Fast Bumpers (L4/R4)": "Fast Bumpers (L4/R4)",
-  Joysticks: "Joysticks",
-  "Wear-resistantJoystick Rings": "Wear-resistant Joystick Rings",
-  "Wear-resistant Joystick Rings": "Wear-resistant Joystick Rings",
-  "Polling Rate": "Polling Rate",
-  "Pro Back Paddle Buttons": "Pro Back Paddle Buttons",
-  "3.5mm Audio Jack": "3.5mm Audio Jack",
-  "Charging Dock": "Charging Dock",
-  "6-axis Motion Control": "6-axis Motion Control",
-  "Shake to wake": "Shake to wake",
-  Vibration: "Vibration",
-  Turbo: "Turbo",
-  "RGB Fire Ring": "RGB Fire Ring",
-  "Ultimate Software Support": "Ultimate Software Support",
-  "Battery Capacity": "Battery Capacity",
-  "Battery Life": "Battery Life",
-  "2.4G Adapter": "2.4G Adapter",
-};
+  'Color/Edition': 'Color/Edition',
+  Layout: 'Layout',
+  Compatibility: 'Compatibility',
+  Connectivity: 'Connectivity',
+  Triggers: 'Triggers',
+  Bumpers: 'Bumpers',
+  'Fast Bumpers (L4/R4)': 'Fast Bumpers (L4/R4)',
+  Joysticks: 'Joysticks',
+  'Wear-resistantJoystick Rings': 'Wear-resistant Joystick Rings',
+  'Wear-resistant Joystick Rings': 'Wear-resistant Joystick Rings',
+  'Polling Rate': 'Polling Rate',
+  'Pro Back Paddle Buttons': 'Pro Back Paddle Buttons',
+  '3.5mm Audio Jack': '3.5mm Audio Jack',
+  'Charging Dock': 'Charging Dock',
+  '6-axis Motion Control': '6-axis Motion Control',
+  'Shake to wake': 'Shake to wake',
+  Vibration: 'Vibration',
+  Turbo: 'Turbo',
+  'RGB Fire Ring': 'RGB Fire Ring',
+  'Ultimate Software Support': 'Ultimate Software Support',
+  'Battery Capacity': 'Battery Capacity',
+  'Battery Life': 'Battery Life',
+  '2.4G Adapter': '2.4G Adapter',
+}
