@@ -1,0 +1,1218 @@
+{
+  "fetchedAt": 1781139032262,
+  "controllers": [
+    {
+      "id": "8bitdo-64-bluetooth-controller-funtastic",
+      "shopifyHandle": "8bitdo-64-bluetooth-controller-funtastic",
+      "officialSlug": "8bitdo-64-bluetooth-controller-funtastic",
+      "name": "64 Controller - Funtastic Limited Editions",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo 64 Controller - Funtastic Limited Editions",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/Clear_3.jpg?v=1764758606",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-64-bluetooth-controller-funtastic",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-64-bluetooth-controller-funtastic/",
+      "basePriceUSD": 44.99,
+      "compareAtPriceUSD": 44.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "shopifyHandle": "8bitdo-ultimate-2c-wireless-controller",
+      "officialSlug": "ultimate-2c-wireless-controller",
+      "name": "Ultimate 2C Wireless (PC)",
+      "family": "Ultimate 2C",
+      "tagline": "Budget Xbox-layout controller for PC and Android. Hall Effect sticks at $29.99.",
+      "specs": {
+        "Color/Edition": {
+          "kind": "list",
+          "value": [
+            "Purple",
+            "Green",
+            "Mint",
+            "Peach",
+            "Transparent Black",
+            "Blueberry (SE)",
+            "Brownie (SE)"
+          ]
+        },
+        "Layout": {
+          "kind": "text",
+          "value": "Xbox layout"
+        },
+        "Compatibility": {
+          "kind": "list",
+          "value": ["Windows", "Android"]
+        },
+        "Connectivity": {
+          "kind": "perPlatform",
+          "value": {
+            "Windows": "2.4G, Wired",
+            "Android": "Bluetooth"
+          }
+        },
+        "2.4G Adapter": {
+          "kind": "text",
+          "value": "USB-A"
+        },
+        "Polling Rate": {
+          "kind": "text",
+          "value": "2.4G / Wired 1000Hz"
+        },
+        "Joysticks": {
+          "kind": "text",
+          "value": "Hall Effect"
+        },
+        "Wear-resistant Joystick Rings": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Triggers": {
+          "kind": "text",
+          "value": "Linear (Hall Effect)"
+        },
+        "Bumpers": {
+          "kind": "text",
+          "value": "Tactile"
+        },
+        "Fast Bumpers (L4/R4)": {
+          "kind": "boolean",
+          "value": true
+        }
+      },
+      "_curatorNotes": "Per the 2C-wireless-vs-C-wireless comparison table: Pro Back Paddles, 3.5mm Audio Jack, 6-axis Motion, Vibration, Turbo, RGB Fire Ring, Charging Dock, Ultimate Software all rendered as empty in markdown. Treated as 'not present' (booleanByDefault). The page's feature copy confirms Hall Effect sticks+triggers, refined bumpers, custom mapping, mode switch — no mention of vibration/motion/RGB/dock.",
+      "id": "8bitdo-ultimate-2c-wireless-controller",
+      "storeTitle": "8BitDo Ultimate 2C Wireless Controller (PC)",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/06_131e1546-9dc3-4e17-997f-eeca32e7fbf1.jpg?v=1763462484",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-2c-wireless-controller",
+      "officialUrl": "https://www.8bitdo.com/ultimate-2c-wireless-controller/",
+      "basePriceUSD": 29.99,
+      "compareAtPriceUSD": 29.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": false
+    },
+    {
+      "id": "8bitdo-pro-2-bluetooth-special-edition",
+      "shopifyHandle": "8bitdo-pro-2-bluetooth-special-edition",
+      "officialSlug": "8bitdo-pro-2-bluetooth-special-edition",
+      "name": "Pro 2 (Special Edition)",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Pro 2 (Special Edition)",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/5917e64e4654634f124ce5f7e041f34d_9b631eb2-77ae-44e0-a393-b75e72361689.jpg?v=1723183477",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-pro-2-bluetooth-special-edition",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-pro-2-bluetooth-special-edition/",
+      "basePriceUSD": 41.99,
+      "compareAtPriceUSD": 54.99,
+      "onSale": true,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-64-controller-prototype-limited-editions",
+      "shopifyHandle": "8bitdo-64-controller-prototype-limited-editions",
+      "officialSlug": "8bitdo-64-controller-prototype-limited-editions",
+      "name": "64 Controller - Prototype  Limited Editions",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo 64 Controller - Prototype  Limited Editions",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/64_-_-__02.jpg?v=1770346277",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-64-controller-prototype-limited-editions",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-64-controller-prototype-limited-editions/",
+      "basePriceUSD": 44.99,
+      "compareAtPriceUSD": 44.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "shopifyHandle": "8bitdo-ultimate-2",
+      "officialSlug": "ultimate-2-wireless-controller",
+      "name": "Ultimate 2 Wireless",
+      "family": "Ultimate",
+      "tagline": "Xbox-layout flagship for PC/Mac/SteamOS/Android. NOTE: does NOT support Nintendo Switch.",
+      "specs": {
+        "Color/Edition": {
+          "kind": "list",
+          "value": ["White", "Black", "Purple", "Green (eShop exclusive)"]
+        },
+        "Layout": {
+          "kind": "text",
+          "value": "Xbox layout"
+        },
+        "Compatibility": {
+          "kind": "list",
+          "value": ["Windows", "Android", "Apple", "SteamOS"]
+        },
+        "Connectivity": {
+          "kind": "perPlatform",
+          "value": {
+            "Windows": "2.4G, Wired",
+            "Android": "Bluetooth"
+          }
+        },
+        "2.4G Adapter": {
+          "kind": "text",
+          "value": "USB-C"
+        },
+        "Polling Rate": {
+          "kind": "text",
+          "value": "2.4G / Wired 1000Hz"
+        },
+        "Joysticks": {
+          "kind": "text",
+          "value": "TMR (12-bit ADC)"
+        },
+        "Wear-resistant Joystick Rings": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Triggers": {
+          "kind": "text",
+          "value": "Dual-mode: Linear Hall Effect / Non-linear tactile"
+        },
+        "Bumpers": {
+          "kind": "text",
+          "value": "Tactile"
+        },
+        "Fast Bumpers (L4/R4)": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Pro Back Paddle Buttons": {
+          "kind": "boolean",
+          "value": true
+        },
+        "6-axis Motion Control": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Vibration": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Turbo": {
+          "kind": "boolean",
+          "value": true
+        },
+        "RGB Fire Ring": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Charging Dock": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Ultimate Software Support": {
+          "kind": "text",
+          "value": "Ultimate Software V2"
+        }
+      },
+      "_curatorNotes": "Major naming hazard: 'Ultimate 2 Wireless' has NO Switch support, while 'Ultimate 2 Bluetooth' (a separate product) DOES. The comparison view should surface this asymmetry clearly in the Compatibility row. Battery capacity not listed on the page comparison table for this product.",
+      "id": "8bitdo-ultimate-2",
+      "storeTitle": "8BitDo Ultimate 2 Wireless Controller",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/2_a97c642b-7ecc-41ba-9ea8-56b99cb5c241.jpg?v=1748916337",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-2",
+      "officialUrl": "https://www.8bitdo.com/ultimate-2-wireless-controller/",
+      "basePriceUSD": 55.99,
+      "compareAtPriceUSD": 59.99,
+      "onSale": true,
+      "available": true,
+      "specsPending": false
+    },
+    {
+      "shopifyHandle": "8bitdo-pro-3",
+      "officialSlug": "pro3",
+      "name": "Pro 3",
+      "family": "Pro",
+      "tagline": "Retro flagship with TMR sticks, Hall Effect triggers, swappable ABXY, and an integrated charging dock.",
+      "specs": {
+        "Color/Edition": {
+          "kind": "list",
+          "value": ["Purple", "G Classic", "Gray", "Orange (eShop exclusive)"]
+        },
+        "Layout": {
+          "kind": "text",
+          "value": "Switch layout (swappable magnetic ABXY: Switch or Xbox)"
+        },
+        "Compatibility": {
+          "kind": "list",
+          "value": [
+            "Switch 1",
+            "Switch 2",
+            "Windows",
+            "SteamOS",
+            "Android",
+            "Apple"
+          ]
+        },
+        "Connectivity": {
+          "kind": "perPlatform",
+          "value": {
+            "Switch": "Bluetooth, 2.4G, Wired",
+            "Windows": "2.4G, Wired",
+            "SteamOS": "Bluetooth, Wired",
+            "Apple": "Bluetooth, Wired",
+            "Android": "Bluetooth, Wired"
+          }
+        },
+        "2.4G Adapter": {
+          "kind": "text",
+          "value": "USB-C"
+        },
+        "Polling Rate": {
+          "kind": "text",
+          "value": "D-input: BT 60-100Hz, Wired 100-200Hz; S-input: BT 60-200Hz, Wired/2.4G 125Hz; X-input: Wired/2.4G 250Hz"
+        },
+        "Joysticks": {
+          "kind": "text",
+          "value": "TMR (12-bit ADC)"
+        },
+        "Wear-resistant Joystick Rings": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Triggers": {
+          "kind": "text",
+          "value": "Dual-mode: Linear Hall Effect / Non-linear micro-switch"
+        },
+        "Bumpers": {
+          "kind": "text",
+          "value": "Silicone"
+        },
+        "Fast Bumpers (L4/R4)": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Pro Back Paddle Buttons": {
+          "kind": "boolean",
+          "value": true
+        },
+        "6-axis Motion Control": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Vibration": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Turbo": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Shake to wake": {
+          "kind": "text",
+          "value": "Switch 1 only"
+        },
+        "Charging Dock": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Battery Capacity": {
+          "kind": "number",
+          "value": 1000,
+          "unit": "mAh"
+        },
+        "Ultimate Software Support": {
+          "kind": "text",
+          "value": "Ultimate Software V2"
+        }
+      },
+      "_curatorNotes": "3.5mm Audio Jack and RGB Fire Ring rows are present in the on-page comparison table but rendered as empty cells; not mentioned in feature copy either way. Conservatively omitted (= 'no' in the comparison view per booleanByDefault).",
+      "id": "8bitdo-pro-3",
+      "storeTitle": "8BitDo Pro 3 Bluetooth Gamepad",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/10_acda695f-904b-4eb1-903c-dec78149fb1a.jpg?v=1760433854",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-pro-3",
+      "officialUrl": "https://www.8bitdo.com/pro3/",
+      "basePriceUSD": 69.99,
+      "compareAtPriceUSD": 69.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": false
+    },
+    {
+      "shopifyHandle": "8bitdo-pro-2-bluetooth-controller",
+      "officialSlug": "pro2",
+      "name": "Pro 2 (Hall Effect)",
+      "family": "Pro",
+      "tagline": "Previous-generation Pro flagship, now with Hall Effect sticks. Broadest platform support including Raspberry Pi.",
+      "specs": {
+        "Color/Edition": {
+          "kind": "list",
+          "value": [
+            "Black",
+            "G Classic",
+            "Gray",
+            "Translucent Purple",
+            "Jade Green",
+            "Transparent Blue",
+            "Transparent Black"
+          ]
+        },
+        "Layout": {
+          "kind": "text",
+          "value": "Switch layout"
+        },
+        "Compatibility": {
+          "kind": "list",
+          "value": [
+            "Switch 1",
+            "Switch 2",
+            "Windows",
+            "SteamOS",
+            "Android",
+            "Apple",
+            "Raspberry Pi"
+          ]
+        },
+        "Connectivity": {
+          "kind": "text",
+          "value": "Bluetooth, Wired"
+        },
+        "Polling Rate": {
+          "kind": "text",
+          "value": "D-input: BT 60Hz, Wired 100Hz; S-input: BT 60-200Hz, Wired 100Hz; X-input: Wired 100Hz"
+        },
+        "Joysticks": {
+          "kind": "text",
+          "value": "Hall Effect"
+        },
+        "Triggers": {
+          "kind": "text",
+          "value": "Linear"
+        },
+        "Bumpers": {
+          "kind": "text",
+          "value": "Silicone"
+        },
+        "Pro Back Paddle Buttons": {
+          "kind": "boolean",
+          "value": true
+        },
+        "6-axis Motion Control": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Vibration": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Turbo": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Battery Capacity": {
+          "kind": "number",
+          "value": 1000,
+          "unit": "mAh"
+        },
+        "Ultimate Software Support": {
+          "kind": "text",
+          "value": "Ultimate Software (v1)"
+        }
+      },
+      "_curatorNotes": "Per Pro 3 comparison table: Pro 2 does NOT have Fast Bumpers (L4/R4), Charging Dock, or RGB Fire Ring (those rows are Pro-3-only). Switch 2 support added via firmware update. Switch compatibility does not support HD rumble or amiibo scanning.",
+      "id": "8bitdo-pro-2-bluetooth-controller",
+      "storeTitle": "8BitDo Pro 2 (Hall Effect Joystick)",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/7_048d770c-63c8-4024-9d49-290d16076f93.jpg?v=1709279281",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-pro-2-bluetooth-controller",
+      "officialUrl": "https://www.8bitdo.com/pro2/",
+      "basePriceUSD": 49.99,
+      "compareAtPriceUSD": 49.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": false
+    },
+    {
+      "id": "8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight",
+      "shopifyHandle": "8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight",
+      "officialSlug": "8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight",
+      "name": "Ultimate 2 Wireless Controller (Honkai: Star Rail - Evernight)",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Ultimate 2 Wireless Controller (Honkai: Star Rail - Evernight)",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/7_56d19dbf-e416-4469-9ef6-a44a9da47c29.jpg?v=1757675113",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight/",
+      "basePriceUSD": 69.99,
+      "compareAtPriceUSD": 69.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "shopifyHandle": "8bitdo-ultimate-2-bluetooth-controller",
+      "officialSlug": "ultimate-2-bluetooth-controller",
+      "name": "Ultimate 2 Bluetooth",
+      "family": "Ultimate",
+      "tagline": "Switch-layout flagship for Switch + PC. Counterpart to the (PC-only) Ultimate 2 Wireless.",
+      "specs": {
+        "Color/Edition": {
+          "kind": "list",
+          "value": ["White", "Black", "Yellow (eShop exclusive)"]
+        },
+        "Layout": {
+          "kind": "text",
+          "value": "Switch layout"
+        },
+        "Compatibility": {
+          "kind": "list",
+          "value": ["Switch 1", "Switch 2", "Windows"]
+        },
+        "Connectivity": {
+          "kind": "perPlatform",
+          "value": {
+            "Switch": "Bluetooth, 2.4G, Wired",
+            "Windows": "2.4G, Wired"
+          }
+        },
+        "2.4G Adapter": {
+          "kind": "text",
+          "value": "USB-C"
+        },
+        "Joysticks": {
+          "kind": "text",
+          "value": "TMR (12-bit ADC)"
+        },
+        "Wear-resistant Joystick Rings": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Triggers": {
+          "kind": "text",
+          "value": "Dual-mode: Linear Hall Effect / Non-linear tactile"
+        },
+        "Bumpers": {
+          "kind": "text",
+          "value": "Tactile"
+        },
+        "Fast Bumpers (L4/R4)": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Pro Back Paddle Buttons": {
+          "kind": "boolean",
+          "value": true
+        },
+        "6-axis Motion Control": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Vibration": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Turbo": {
+          "kind": "boolean",
+          "value": true
+        },
+        "RGB Fire Ring": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Charging Dock": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Ultimate Software Support": {
+          "kind": "text",
+          "value": "Ultimate Software V2"
+        }
+      },
+      "_curatorNotes": "Major naming hazard (see Ultimate 2 Wireless entry). Polling Rate row was present on the comparison table but rendered as empty — likely 2.4G/Wired 1000Hz to match the rest of the line. Confirm before shipping.",
+      "id": "8bitdo-ultimate-2-bluetooth-controller",
+      "storeTitle": "8BitDo Ultimate 2 Bluetooth Controller",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/1_949fa0aa-f6d2-4b33-a59c-f326946a4678.png?v=1750218352",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-2-bluetooth-controller",
+      "officialUrl": "https://www.8bitdo.com/ultimate-2-bluetooth-controller/",
+      "basePriceUSD": 59.99,
+      "compareAtPriceUSD": 69.99,
+      "onSale": true,
+      "available": true,
+      "specsPending": false
+    },
+    {
+      "shopifyHandle": "8bitdo-sn30-pro-bluetooth-gamepad",
+      "officialSlug": "sn30-pro-g-classic-or-sn30-pro-sn",
+      "name": "SN30 Pro (Hall Effect)",
+      "family": "SN30",
+      "tagline": "SNES-style retro flagship, now with Hall Effect sticks. Broad platform support including Raspberry Pi.",
+      "specs": {
+        "Color/Edition": {
+          "kind": "list",
+          "value": [
+            "Gray",
+            "G Classic",
+            "SN",
+            "Crystal Purple (SE)",
+            "Jade Green (SE)"
+          ]
+        },
+        "Layout": {
+          "kind": "text",
+          "value": "SNES retro layout (two-level shoulder buttons)"
+        },
+        "Compatibility": {
+          "kind": "list",
+          "value": [
+            "Switch 1",
+            "Switch 2",
+            "Windows",
+            "SteamOS",
+            "Android",
+            "Apple",
+            "Raspberry Pi"
+          ]
+        },
+        "Connectivity": {
+          "kind": "text",
+          "value": "Bluetooth, Wired"
+        },
+        "Joysticks": {
+          "kind": "text",
+          "value": "Hall Effect"
+        },
+        "Triggers": {
+          "kind": "text",
+          "value": "Linear"
+        },
+        "6-axis Motion Control": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Vibration": {
+          "kind": "boolean",
+          "value": true
+        }
+      },
+      "_curatorNotes": "Older product, no embedded comparison table on its marketing page — specs above come from the page's hero/feature copy ('Hall Effect joysticks', 'rumble vibration', 'motion controls', 'wireless bluetooth', 'rechargeable battery', 'USB-C connector'). Battery capacity, polling rate, Ultimate Software support, and back paddles all unclear from the page; left out rather than guessed. Switch 2 support added via firmware update. Switch compatibility doesn't support HD rumble or amiibo.",
+      "id": "8bitdo-sn30-pro-bluetooth-gamepad",
+      "storeTitle": "8BitDo SN30 Pro (Hall Effect Joystick)",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/4_742a9dc7-8620-4f1c-b601-57e8aab68f16.jpg?v=1709279638",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-sn30-pro-bluetooth-gamepad",
+      "officialUrl": "https://www.8bitdo.com/sn30-pro-g-classic-or-sn30-pro-sn/",
+      "basePriceUSD": 44.99,
+      "compareAtPriceUSD": 44.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": false
+    },
+    {
+      "id": "ultimate-2-bluetooth-nes-40th",
+      "shopifyHandle": "ultimate-2-bluetooth-nes-40th",
+      "officialSlug": "ultimate-2-bluetooth-nes-40th",
+      "name": "Ultimate 2 Bluetooth - NES 40th Limited Edition",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "Ultimate 2 Bluetooth - NES 40th Limited Edition",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/N40__04.jpg?v=1760607129",
+      "shopUrl": "https://shop.8bitdo.com/products/ultimate-2-bluetooth-nes-40th",
+      "officialUrl": "https://www.8bitdo.com/ultimate-2-bluetooth-nes-40th/",
+      "basePriceUSD": 79.99,
+      "compareAtPriceUSD": null,
+      "onSale": false,
+      "available": false,
+      "specsPending": true
+    },
+    {
+      "id": "ultimate-2c-black-myth-wukong",
+      "shopifyHandle": "ultimate-2c-black-myth-wukong",
+      "officialSlug": "ultimate-2c-black-myth-wukong",
+      "name": "Ultimate 2C - Black Myth: Wukong",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Ultimate 2C - Black Myth: Wukong",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/1_36458b99-5613-40be-b85c-d726f89c75ca.jpg?v=1723709444",
+      "shopUrl": "https://shop.8bitdo.com/products/ultimate-2c-black-myth-wukong",
+      "officialUrl": "https://www.8bitdo.com/ultimate-2c-black-myth-wukong/",
+      "basePriceUSD": 18.99,
+      "compareAtPriceUSD": 24.99,
+      "onSale": true,
+      "available": false,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-sn30-wireless-gamepad-for-original-snes-sfc",
+      "shopifyHandle": "8bitdo-sn30-wireless-gamepad-for-original-snes-sfc",
+      "officialSlug": "8bitdo-sn30-wireless-gamepad-for-original-snes-sfc",
+      "name": "SN30 2.4G",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo SN30 2.4G",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/12_2de6c7ee-ef65-41ca-9b5d-4d0171472d21.jpg?v=1724744990",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-sn30-wireless-gamepad-for-original-snes-sfc",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-sn30-wireless-gamepad-for-original-snes-sfc/",
+      "basePriceUSD": 29.99,
+      "compareAtPriceUSD": 29.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "shopifyHandle": "8bitdo-ultimate-2c-wired-controller",
+      "officialSlug": "ultimate-2c-wired-controller",
+      "name": "Ultimate 2C Wired",
+      "family": "Ultimate 2C",
+      "tagline": "Cheapest entry, wired-only. Hall Effect sticks at $19.99.",
+      "specs": {
+        "Color/Edition": {
+          "kind": "list",
+          "value": ["Purple", "Green", "Mint", "Peach"]
+        },
+        "Layout": {
+          "kind": "text",
+          "value": "Xbox layout"
+        },
+        "Compatibility": {
+          "kind": "list",
+          "value": ["Windows", "Android"]
+        },
+        "Connectivity": {
+          "kind": "text",
+          "value": "Wired (USB-C)"
+        },
+        "Polling Rate": {
+          "kind": "text",
+          "value": "1000Hz"
+        },
+        "Joysticks": {
+          "kind": "text",
+          "value": "Hall Effect"
+        },
+        "Wear-resistant Joystick Rings": {
+          "kind": "boolean",
+          "value": true
+        },
+        "Triggers": {
+          "kind": "text",
+          "value": "Linear (Hall Effect)"
+        },
+        "Bumpers": {
+          "kind": "text",
+          "value": "Tactile"
+        },
+        "Fast Bumpers (L4/R4)": {
+          "kind": "boolean",
+          "value": true
+        }
+      },
+      "_curatorNotes": "Same pattern as 2C Wireless — all premium features (back paddles, motion, vibration, turbo, RGB, audio jack) are absent from the comparison table and feature copy; treated as not present. No battery section since it's wired-only.",
+      "id": "8bitdo-ultimate-2c-wired-controller",
+      "storeTitle": "8BitDo Ultimate 2C Wired Controller",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/30_a04acc73-b4c3-466f-a220-1c6dd1c7f2ac.jpg?v=1718708263",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-2c-wired-controller",
+      "officialUrl": "https://www.8bitdo.com/ultimate-2c-wired-controller/",
+      "basePriceUSD": 19.99,
+      "compareAtPriceUSD": 19.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": false
+    },
+    {
+      "shopifyHandle": "8bitdo-lite-2-bluetooth-gamepad-for-switch-android-and-raspberry-pi",
+      "officialSlug": "lite2",
+      "name": "Lite 2",
+      "family": "Lite",
+      "tagline": "Ultra-portable, fully-featured small-form-factor controller. Made for 2D games and travel.",
+      "specs": {
+        "Color/Edition": {
+          "kind": "list",
+          "value": ["Turquoise", "Pink"]
+        },
+        "Layout": {
+          "kind": "text",
+          "value": "Switch Lite-inspired (compact, no full sticks)"
+        },
+        "Compatibility": {
+          "kind": "list",
+          "value": ["Switch 1", "Switch 2", "Android", "Apple", "Raspberry Pi"]
+        },
+        "Connectivity": {
+          "kind": "text",
+          "value": "Bluetooth, Wired (USB-C)"
+        },
+        "Joysticks": {
+          "kind": "text",
+          "value": "Standard mini joysticks"
+        },
+        "6-axis Motion Control": {
+          "kind": "text",
+          "value": "Yes, but only in S (Switch) mode"
+        },
+        "Vibration": {
+          "kind": "text",
+          "value": "Yes, but only in S (Switch) mode (no HD rumble on Switch)"
+        },
+        "Turbo": {
+          "kind": "text",
+          "value": "Yes, in D-input mode"
+        },
+        "Mode Switch": {
+          "kind": "text",
+          "value": "S (Switch) / D (Android/Apple/Pi)"
+        },
+        "Battery Capacity": {
+          "kind": "number",
+          "value": 480,
+          "unit": "mAh"
+        },
+        "Battery Life": {
+          "kind": "text",
+          "value": "Up to 20 hours"
+        }
+      },
+      "_curatorNotes": "Does NOT officially support Windows/PC directly per the 8bitdo.com page (Switch, Android, Apple, Raspberry Pi only). Some users report D-input working with PC via Bluetooth but it's unsupported. Ultimate Software is not in its supported-devices list. For Switch+PC+Mac users, this controller MISSES PC support.",
+      "id": "8bitdo-lite-2-bluetooth-gamepad-for-switch-android-and-raspberry-pi",
+      "storeTitle": "8BitDo Lite 2",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/products/61-ojx_6lRL._SL1500.jpg?v=1705990981",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-lite-2-bluetooth-gamepad-for-switch-android-and-raspberry-pi",
+      "officialUrl": "https://www.8bitdo.com/lite2/",
+      "basePriceUSD": 34.99,
+      "compareAtPriceUSD": 34.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": false
+    },
+    {
+      "id": "8bitdo-m30-bluetooth-gamepad-for-switch-pc-macos-and-android-with-sega-genesis-mega-drive",
+      "shopifyHandle": "8bitdo-m30-bluetooth-gamepad-for-switch-pc-macos-and-android-with-sega-genesis-mega-drive",
+      "officialSlug": "8bitdo-m30-bluetooth-gamepad-for-switch-pc-macos-and-android-with-sega-genesis-mega-drive",
+      "name": "M30",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo M30",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/6_2f23927c-c0eb-4799-8124-eebcedbbfae4.jpg?v=1705991037",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-m30-bluetooth-gamepad-for-switch-pc-macos-and-android-with-sega-genesis-mega-drive",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-m30-bluetooth-gamepad-for-switch-pc-macos-and-android-with-sega-genesis-mega-drive/",
+      "basePriceUSD": 29.99,
+      "compareAtPriceUSD": 29.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-ultimate-wired-controller-for-xbox-and-windows",
+      "shopifyHandle": "8bitdo-ultimate-wired-controller-for-xbox-and-windows",
+      "officialSlug": "8bitdo-ultimate-wired-controller-for-xbox-and-windows",
+      "name": "Ultimate Wired Controller for Xbox (Hall Effect Joystick)",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Ultimate Wired Controller for Xbox (Hall Effect Joystick)",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/3_a142e7c6-b688-445a-834a-c1b13bf972f9.jpg?v=1709279501",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-wired-controller-for-xbox-and-windows",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-ultimate-wired-controller-for-xbox-and-windows/",
+      "basePriceUSD": 29.99,
+      "compareAtPriceUSD": 44.99,
+      "onSale": true,
+      "available": false,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-zero-2-bluetooth-gamepad-mini-controller",
+      "shopifyHandle": "8bitdo-zero-2-bluetooth-gamepad-mini-controller",
+      "officialSlug": "8bitdo-zero-2-bluetooth-gamepad-mini-controller",
+      "name": "Zero 2",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Zero 2",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/products/61ABnC9Y8ML._SL1500.jpg?v=1705991251",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-zero-2-bluetooth-gamepad-mini-controller",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-zero-2-bluetooth-gamepad-mini-controller/",
+      "basePriceUSD": 19.99,
+      "compareAtPriceUSD": 19.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-pce-2-4g",
+      "shopifyHandle": "8bitdo-pce-2-4g",
+      "officialSlug": "8bitdo-pce-2-4g",
+      "name": "PCE 2.4G",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo PCE 2.4G",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/1_12716524-70a1-4ab1-b22d-b111190101b8.jpg?v=1684380655",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-pce-2-4g",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-pce-2-4g/",
+      "basePriceUSD": 20.99,
+      "compareAtPriceUSD": 24.99,
+      "onSale": true,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "n30-2-4g",
+      "shopifyHandle": "n30-2-4g",
+      "officialSlug": "n30-2-4g",
+      "name": "N30 2.4G",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo N30 2.4G",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/7_8cc37f73-19e0-4f23-ba8b-7cce6bd67ce9.jpg?v=1724748017",
+      "shopUrl": "https://shop.8bitdo.com/products/n30-2-4g",
+      "officialUrl": "https://www.8bitdo.com/n30-2-4g/",
+      "basePriceUSD": 29.99,
+      "compareAtPriceUSD": 29.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-m30-wireless-gamepad-for-the-original-sega-genesis-and-sega-mega-drive",
+      "shopifyHandle": "8bitdo-m30-wireless-gamepad-for-the-original-sega-genesis-and-sega-mega-drive",
+      "officialSlug": "8bitdo-m30-wireless-gamepad-for-the-original-sega-genesis-and-sega-mega-drive",
+      "name": "M30 2.4G Controller for Sega Genesis & Mega Drive",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo M30 2.4G Controller for Sega Genesis & Mega Drive",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/products/61szTnoZobL._SL1500.jpg?v=1705991216",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-m30-wireless-gamepad-for-the-original-sega-genesis-and-sega-mega-drive",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-m30-wireless-gamepad-for-the-original-sega-genesis-and-sega-mega-drive/",
+      "basePriceUSD": 29.99,
+      "compareAtPriceUSD": 29.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-ultimate-mini-wired-controller-for-xbox",
+      "shopifyHandle": "8bitdo-ultimate-mini-wired-controller-for-xbox",
+      "officialSlug": "8bitdo-ultimate-mini-wired-controller-for-xbox",
+      "name": "Ultimate Mini Wired Controller for Xbox",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Ultimate Mini Wired Controller for Xbox",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/23_cef0982e-3ea8-4c19-9ae8-e3664bb72406.jpg?v=1734608214",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-mini-wired-controller-for-xbox",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-ultimate-mini-wired-controller-for-xbox/",
+      "basePriceUSD": 27.99,
+      "compareAtPriceUSD": 34.99,
+      "onSale": true,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-sn30-pro-wired-gamepad-for-switch-pc-retropie-raspberry-pi",
+      "shopifyHandle": "8bitdo-sn30-pro-wired-gamepad-for-switch-pc-retropie-raspberry-pi",
+      "officialSlug": "8bitdo-sn30-pro-wired-gamepad-for-switch-pc-retropie-raspberry-pi",
+      "name": "SN30 Pro Wired Controller",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo SN30 Pro Wired Controller",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/products/SN30PROUSBGEdition_1.jpg?v=1705991326",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-sn30-pro-wired-gamepad-for-switch-pc-retropie-raspberry-pi",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-sn30-pro-wired-gamepad-for-switch-pc-retropie-raspberry-pi/",
+      "basePriceUSD": 24.99,
+      "compareAtPriceUSD": 29.99,
+      "onSale": true,
+      "available": false,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-m30-wireless-gamepad-for-sega-genesis-mini-and-mega-drive-mini",
+      "shopifyHandle": "8bitdo-m30-wireless-gamepad-for-sega-genesis-mini-and-mega-drive-mini",
+      "officialSlug": "8bitdo-m30-wireless-gamepad-for-sega-genesis-mini-and-mega-drive-mini",
+      "name": "M30 2.4G Controller for Sega Genesis Mini & Mega Drive Mini",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo M30 2.4G Controller for Sega Genesis Mini & Mega Drive Mini",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/10_a7a183d6-81ca-4320-9d1c-a9e0091e6719.jpg?v=1705991174",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-m30-wireless-gamepad-for-sega-genesis-mini-and-mega-drive-mini",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-m30-wireless-gamepad-for-sega-genesis-mini-and-mega-drive-mini/",
+      "basePriceUSD": 29.99,
+      "compareAtPriceUSD": 24.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-ultimate-2-wuchang",
+      "shopifyHandle": "8bitdo-ultimate-2-wuchang",
+      "officialSlug": "8bitdo-ultimate-2-wuchang",
+      "name": "Ultimate 2 Wireless Controller - WUCHANG: Fallen Feathers",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Ultimate 2 Wireless Controller - WUCHANG: Fallen Feathers",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/10_75b11bad-f2a3-40c4-9d2e-1eacf84822c1.jpg?v=1750950242",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-2-wuchang",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-ultimate-2-wuchang/",
+      "basePriceUSD": 64.99,
+      "compareAtPriceUSD": 64.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-arcade-controller",
+      "shopifyHandle": "8bitdo-arcade-controller",
+      "officialSlug": "8bitdo-arcade-controller",
+      "name": "Arcade Controller",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Arcade Controller",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/1_6b1d28e1-604d-4ee8-a267-d817b58ff0a2.jpg?v=1747369311",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-arcade-controller",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-arcade-controller/",
+      "basePriceUSD": 89.99,
+      "compareAtPriceUSD": 89.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-sn30-pro-limited-edition",
+      "shopifyHandle": "8bitdo-sn30-pro-limited-edition",
+      "officialSlug": "8bitdo-sn30-pro-limited-edition",
+      "name": "SN30 Pro - Space Gray Limited Edition",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo SN30 Pro - Space Gray Limited Edition",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/9_e1d6a929-d2a7-47a3-b9c0-9b3cee356376.jpg?v=1752055203",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-sn30-pro-limited-edition",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-sn30-pro-limited-edition/",
+      "basePriceUSD": 89.99,
+      "compareAtPriceUSD": 99.99,
+      "onSale": true,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-ultimate-mobile-gaming-controller",
+      "shopifyHandle": "8bitdo-ultimate-mobile-gaming-controller",
+      "officialSlug": "8bitdo-ultimate-mobile-gaming-controller",
+      "name": "Ultimate Mobile Gaming Controller",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Ultimate Mobile Gaming Controller",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/9_75044003-4b9a-40bd-8576-0a3ab401456a.jpg?v=1729836693",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-mobile-gaming-controller",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-ultimate-mobile-gaming-controller/",
+      "basePriceUSD": 49.99,
+      "compareAtPriceUSD": 49.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-64-2-4g-wireless-controller",
+      "shopifyHandle": "8bitdo-64-2-4g-wireless-controller",
+      "officialSlug": "8bitdo-64-2-4g-wireless-controller",
+      "name": "64 2.4G Wireless Controller - Classic Grey",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo 64 2.4G Wireless Controller - Classic Grey",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/lQDPJwm4ObGyXHnNBkHNBkGwQCjcORkyKsoJko3admLGAA_1601_1601.jpg?v=1773889704",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-64-2-4g-wireless-controller",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-64-2-4g-wireless-controller/",
+      "basePriceUSD": 39.99,
+      "compareAtPriceUSD": null,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-m30-wired-controller-for-xbox",
+      "shopifyHandle": "8bitdo-m30-wired-controller-for-xbox",
+      "officialSlug": "8bitdo-m30-wired-controller-for-xbox",
+      "name": "M30 Wired Controller for Xbox",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo M30 Wired Controller for Xbox",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/8_4f25a23b-9349-4505-989a-5a1c741bf4f1.jpg?v=1701766381",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-m30-wired-controller-for-xbox",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-m30-wired-controller-for-xbox/",
+      "basePriceUSD": 34.99,
+      "compareAtPriceUSD": 34.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-ultimate-wired-controller-for-switch-and-windows-officially-licensed",
+      "shopifyHandle": "8bitdo-ultimate-wired-controller-for-switch-and-windows-officially-licensed",
+      "officialSlug": "8bitdo-ultimate-wired-controller-for-switch-and-windows-officially-licensed",
+      "name": "Arcade Stick",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Arcade Stick",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/products/71Hm2oWl6TL._SL1500.jpg?v=1705990996",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-wired-controller-for-switch-and-windows-officially-licensed",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-ultimate-wired-controller-for-switch-and-windows-officially-licensed/",
+      "basePriceUSD": 89.99,
+      "compareAtPriceUSD": 89.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-lite-se-bluetooth-gamepad-for-gamers-with-limited-mobility",
+      "shopifyHandle": "8bitdo-lite-se-bluetooth-gamepad-for-gamers-with-limited-mobility",
+      "officialSlug": "8bitdo-lite-se-bluetooth-gamepad-for-gamers-with-limited-mobility",
+      "name": "Lite SE",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Lite SE",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/products/1.webp?v=1705991101",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-lite-se-bluetooth-gamepad-for-gamers-with-limited-mobility",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-lite-se-bluetooth-gamepad-for-gamers-with-limited-mobility/",
+      "basePriceUSD": 24.99,
+      "compareAtPriceUSD": 34.99,
+      "onSale": true,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-ultimate-3e-controller-for-xbox",
+      "shopifyHandle": "8bitdo-ultimate-3e-controller-for-xbox",
+      "officialSlug": "8bitdo-ultimate-3e-controller-for-xbox",
+      "name": "Ultimate 3E Controller for Xbox (Ships on Aug 31. 2026)",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Ultimate 3E Controller for Xbox (Ships on Aug 31. 2026)",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/81HF-_3E-__12.jpg?v=1779692197",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-ultimate-3e-controller-for-xbox",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-ultimate-3e-controller-for-xbox/",
+      "basePriceUSD": 149.99,
+      "compareAtPriceUSD": null,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "ultimate-mobile-gaming-controller-xbox-edition",
+      "shopifyHandle": "ultimate-mobile-gaming-controller-xbox-edition",
+      "officialSlug": "ultimate-mobile-gaming-controller-xbox-edition",
+      "name": "Ultimate Mobile Gaming Controller - Xbox Edition",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "Ultimate Mobile Gaming Controller - Xbox Edition",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/1_1c1b4dae-cfaa-4f84-bb20-6e4865fc87c1.jpg?v=1752051212",
+      "shopUrl": "https://shop.8bitdo.com/products/ultimate-mobile-gaming-controller-xbox-edition",
+      "officialUrl": "https://www.8bitdo.com/ultimate-mobile-gaming-controller-xbox-edition/",
+      "basePriceUSD": 38.99,
+      "compareAtPriceUSD": 49.99,
+      "onSale": true,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-arcade-stick-for-xbox",
+      "shopifyHandle": "8bitdo-arcade-stick-for-xbox",
+      "officialSlug": "8bitdo-arcade-stick-for-xbox",
+      "name": "Arcade Stick for Xbox",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Arcade Stick for Xbox",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/1_2969f8ac-6884-40dd-881a-61438abb94d1.jpg?v=1685723055",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-arcade-stick-for-xbox",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-arcade-stick-for-xbox/",
+      "basePriceUSD": 89.99,
+      "compareAtPriceUSD": 119.99,
+      "onSale": true,
+      "available": false,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-arcade-controller-for-xbox",
+      "shopifyHandle": "8bitdo-arcade-controller-for-xbox",
+      "officialSlug": "8bitdo-arcade-controller-for-xbox",
+      "name": "Arcade Controller for Xbox",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Arcade Controller for Xbox",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/1_f842ca3d-6cb2-4abd-b957-1ed4777fdab0.jpg?v=1747367851",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-arcade-controller-for-xbox",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-arcade-controller-for-xbox/",
+      "basePriceUSD": 99.99,
+      "compareAtPriceUSD": 99.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-lite-se-2-4g-wireless-controller-for-xbox",
+      "shopifyHandle": "8bitdo-lite-se-2-4g-wireless-controller-for-xbox",
+      "officialSlug": "8bitdo-lite-se-2-4g-wireless-controller-for-xbox",
+      "name": "Lite SE 2.4G Wireless Controller for Xbox",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Lite SE 2.4G Wireless Controller for Xbox",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/8_8bf1beb8-d90a-4608-a4ae-9c7a9b3e6e3b.jpg?v=1724740118",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-lite-se-2-4g-wireless-controller-for-xbox",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-lite-se-2-4g-wireless-controller-for-xbox/",
+      "basePriceUSD": 59.99,
+      "compareAtPriceUSD": 59.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "8bitdo-arcade-controller-transparent-purple",
+      "shopifyHandle": "8bitdo-arcade-controller-transparent-purple",
+      "officialSlug": "8bitdo-arcade-controller-transparent-purple",
+      "name": "Arcade Controller - Transparent Purple Signature Edition",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "8BitDo Arcade Controller - Transparent Purple Signature Edition",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/80FG__02.jpg?v=1765529148",
+      "shopUrl": "https://shop.8bitdo.com/products/8bitdo-arcade-controller-transparent-purple",
+      "officialUrl": "https://www.8bitdo.com/8bitdo-arcade-controller-transparent-purple/",
+      "basePriceUSD": 94.99,
+      "compareAtPriceUSD": 94.99,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    },
+    {
+      "id": "ultimate-3-controller-for-xbox-lavender-dusk",
+      "shopifyHandle": "ultimate-3-controller-for-xbox-lavender-dusk",
+      "officialSlug": "ultimate-3-controller-for-xbox-lavender-dusk",
+      "name": "Ultimate 3 Controller for Xbox - Lavender Dusk (Ships on Aug 31. 2026)",
+      "family": "Other",
+      "tagline": "",
+      "specs": {},
+      "storeTitle": "Ultimate 3 Controller for Xbox - Lavender Dusk (Ships on Aug 31. 2026)",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0621/8894/5585/files/81HJ03-_-_-__13_672bc3c4-6115-486e-afa7-acafd4dfc968.jpg?v=1778817063",
+      "shopUrl": "https://shop.8bitdo.com/products/ultimate-3-controller-for-xbox-lavender-dusk",
+      "officialUrl": "https://www.8bitdo.com/ultimate-3-controller-for-xbox-lavender-dusk/",
+      "basePriceUSD": 99.99,
+      "compareAtPriceUSD": null,
+      "onSale": false,
+      "available": true,
+      "specsPending": true
+    }
+  ]
+}

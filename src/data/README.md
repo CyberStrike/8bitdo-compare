@@ -1,11 +1,10 @@
-# `data/` — pre-Phase-1 seed data
+# `src/data/`
 
-Two files live here, written during the planning phase so the data model and the diff‑highlighting design are grounded in real values before any app code is scaffolded:
+Three files:
 
-- **`specCatalog.ts`** — the canonical list of every spec label we recognise, plus the section it belongs to, its display order, and whether absence means "no" (`booleanByDefault`) or "unknown."
-- **`controllerSpecs.json`** — one entry per in‑scope controller, with the full spec set lifted from each product's official marketing page (`https://www.8bitdo.com/<slug>/`).
-
-When Phase 0/1 lands, both files move into `src/data/` (their final home per the design doc). The contents stay the same.
+- **`specCatalog.ts`** — canonical spec labels, plus the section each belongs to, its display order, whether absence means "no" (`booleanByDefault`) or "unknown," and a raw → canonical normaliser for the slight wording differences between 8BitDo product pages.
+- **`controllerSpecs.json`** — one entry per in‑scope controller, keyed by Shopify product handle, with the full spec set lifted from each product's official marketing page (`https://www.8bitdo.com/<slug>/`). The Shopify handles in the keys are checked against the live store; mismatched keys surface as `specsPending: true` rows in the catalog.
+- **`fallbackCatalog.json`** — a snapshot of the merged catalog (Shopify pricing × curated specs) used as the bootstrap when `localStorage` is empty AND the live Shopify fetch fails. **Regenerate with `pnpm refresh-fallback` after touching `controllerSpecs.json`.**
 
 ## Coverage
 
