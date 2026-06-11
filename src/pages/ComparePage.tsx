@@ -24,28 +24,49 @@ export function ComparePage() {
     const urlIds = params.get('ids') ?? ''
     const stateIds = serialiseIdsParam(selectedIds)
 
-    const urlChanged = lastUrlIds.current !== urlIds
-    const stateChanged = lastStateIds.current !== stateIds
-
     if (urlIds === stateIds) {
-      // Already in sync — just record the snapshot so future deltas
-      // are detected correctly.
       lastUrlIds.current = urlIds
       lastStateIds.current = stateIds
       return
     }
 
+    const isFirstRun = lastUrlIds.current === null
+    const urlChanged = lastUrlIds.current !== urlIds
+    const stateChanged = lastStateIds.current !== stateIds
+
+    // First-run reconciliation. CompareProvider may have restored a
+    // selection from localStorage, AND the URL may have its own ids.
+    // Three cases to handle so we don't wipe persisted state with an
+    // empty URL (which would regress Phase 2 behaviour):
+    //   - URL has ids → URL wins (explicit navigation), state catches up.
+    //   - URL empty, state has ids → state wins, write it into the URL.
+    //   - Both empty → no-op.
+    if (isFirstRun) {
+      if (urlIds !== '') {
+        setIds(parseIdsParam(urlIds))
+        lastUrlIds.current = urlIds
+      } else if (stateIds !== '') {
+        const next = new URLSearchParams(params)
+        next.set('ids', stateIds)
+        setParams(next, { replace: true })
+        lastStateIds.current = stateIds
+      } else {
+        lastUrlIds.current = ''
+        lastStateIds.current = ''
+      }
+      return
+    }
+
+    // Subsequent renders: classify by which side moved since the last
+    // sync. URL changes (deep link, browser back) win over coincident
+    // state changes; otherwise the state change propagates into the URL.
     if (urlChanged) {
-      // URL → state (initial deep link, browser back/forward, manual
-      // pasted link). Wins over a coincident state change because the
-      // user navigated explicitly.
       setIds(parseIdsParam(urlIds))
       lastUrlIds.current = urlIds
       return
     }
 
     if (stateChanged) {
-      // State → URL (user removed via the header X, programmatic clear).
       const next = new URLSearchParams(params)
       if (stateIds === '') next.delete('ids')
       else next.set('ids', stateIds)
@@ -60,9 +81,9 @@ export function ComparePage() {
   // banner — per design §10. Only fire once the catalog is ready, so the
   // initial-load "everything is missing" flicker doesn't trigger a false
   // positive.
-  const { selected, dropped } = useMemo(() => {
+  const { selected, dropped, resolvedIds } = useMemo(() => {
     if (status === 'loading') {
-      return { selected: [], dropped: 0 }
+      return { selected: [], dropped: 0, resolvedIds: [] as string[] }
     }
     const resolved = selectedIds
       .map((id) => controllers.find((c) => c.id === id))
@@ -70,6 +91,7 @@ export function ComparePage() {
     return {
       selected: resolved,
       dropped: selectedIds.length - resolved.length,
+      resolvedIds: resolved.map((c) => c.id),
     }
   }, [selectedIds, controllers, status])
 
@@ -90,15 +112,22 @@ export function ComparePage() {
       {dropped > 0 && (
         <div
           role="status"
-          className="mb-6 flex items-start gap-2 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100"
+          className="mb-6 flex flex-wrap items-center gap-3 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100"
         >
-          <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-          <span>
+          <AlertCircle className="size-4 shrink-0" aria-hidden="true" />
+          <span className="flex-1">
             {dropped === 1
               ? '1 controller in your link is no longer available.'
               : `${dropped} controllers in your link are no longer available.`}{' '}
-            They&rsquo;ve been dropped from the comparison below.
+            They&rsquo;re not in the comparison below.
           </span>
+          <button
+            type="button"
+            onClick={() => setIds(resolvedIds)}
+            className="rounded-md border border-amber-400 bg-white px-2.5 py-1 text-xs font-medium text-amber-900 transition hover:bg-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 dark:border-amber-600 dark:bg-amber-900 dark:text-amber-100 dark:hover:bg-amber-800"
+          >
+            Remove from link
+          </button>
         </div>
       )}
 

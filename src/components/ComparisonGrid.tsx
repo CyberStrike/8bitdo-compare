@@ -228,9 +228,15 @@ function PricingRowView({
   const variant: RowVariant = row.differs ? 'differ' : 'equal'
   const accent = rowAccentClass(variant)
   return (
-    <div role="row" className="contents text-sm">
+    // No ARIA role/row/cell semantics — adding those outside a proper
+    // role="table" / "grid" / "treegrid" container is invalid ARIA and
+    // confuses screen readers more than it helps. The visual layout +
+    // the heading hierarchy + the non-colour dot indicator carry the
+    // information. A full role="table" / "rowgroup" / "row" / "cell"
+    // pass is a Phase 4 a11y polish item if needed.
+    <div className="contents text-sm">
       <div
-        role="rowheader"
+        data-row-label={row.label}
         data-variant={variant}
         className={clsx(
           'flex items-center gap-1.5 px-3 py-2 text-xs font-medium tracking-wide text-zinc-600 uppercase dark:text-zinc-400',
@@ -243,18 +249,13 @@ function PricingRowView({
       {row.values.map((value, i) => (
         <div
           key={i}
-          role="cell"
           className={clsx('px-3 py-2 text-zinc-900 dark:text-zinc-100', accent)}
         >
           {value}
         </div>
       ))}
       {hasOpenSlot && (
-        <div
-          role="cell"
-          aria-hidden="true"
-          className={clsx('hidden md:block', accent)}
-        />
+        <div aria-hidden="true" className={clsx('hidden md:block', accent)} />
       )}
     </div>
   )
@@ -270,9 +271,9 @@ function SpecRowView({
   const variant: RowVariant = row.classification
   const accent = rowAccentClass(variant)
   return (
-    <div role="row" className="contents text-sm">
+    <div className="contents text-sm">
       <div
-        role="rowheader"
+        data-row-label={row.label}
         data-variant={variant}
         className={clsx(
           'flex items-center gap-1.5 px-3 py-2 text-xs font-medium tracking-wide text-zinc-600 uppercase dark:text-zinc-400',
@@ -283,16 +284,12 @@ function SpecRowView({
         {row.label}
       </div>
       {row.values.map((value, i) => (
-        <div key={i} role="cell" className={clsx('px-3 py-2', accent)}>
+        <div key={i} className={clsx('px-3 py-2', accent)}>
           <SpecValueCell value={value} />
         </div>
       ))}
       {hasOpenSlot && (
-        <div
-          role="cell"
-          aria-hidden="true"
-          className={clsx('hidden md:block', accent)}
-        />
+        <div aria-hidden="true" className={clsx('hidden md:block', accent)} />
       )}
     </div>
   )
