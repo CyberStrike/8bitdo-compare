@@ -1,0 +1,363 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "generatedAt": "2026-06-10",
+    "scope": "Controllers in the in-scope set for Switch/PC/Mac use cases (see design §12.1).",
+    "specSource": "Each entry curated from the controller's marketing page on https://www.8bitdo.com/<slug>/, primarily the comparison tables embedded on the Pro 3, Ultimate 2 Wireless, Ultimate 2 Bluetooth, Ultimate 2C Wireless, Ultimate 2C Wired, SN30 Pro, Lite 2, and Pro 2 product pages.",
+    "specValueShape": "{ kind: 'text' | 'boolean' | 'number' | 'list' | 'perPlatform', value: ..., unit?: string }",
+    "missingPolicy": "If a spec has booleanByDefault: true in specCatalog.ts and is OMITTED here, the comparison view treats it as 'this controller does not have this feature.' Otherwise omission means 'not listed by 8BitDo for this model.'",
+    "curatorTodos": "Several rows on 8BitDo's comparison tables render as empty cells in the markdown fetch (checkmark icons), so a small number of boolean specs are conservatively omitted rather than guessed. Worth a second pass against the rendered marketing pages before shipping; see per-entry _curatorNotes."
+  },
+
+  "8bitdo-pro-3-bluetooth-gamepad": {
+    "shopifyHandle": "8bitdo-pro-3-bluetooth-gamepad",
+    "officialSlug": "pro3",
+    "name": "Pro 3",
+    "family": "Pro",
+    "tagline": "Retro flagship with TMR sticks, Hall Effect triggers, swappable ABXY, and an integrated charging dock.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Purple", "G Classic", "Gray", "Orange (eShop exclusive)"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "Switch layout (swappable magnetic ABXY: Switch or Xbox)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": [
+          "Switch 1",
+          "Switch 2",
+          "Windows",
+          "SteamOS",
+          "Android",
+          "Apple"
+        ]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Switch": "Bluetooth, 2.4G, Wired",
+          "Windows": "2.4G, Wired",
+          "SteamOS": "Bluetooth, Wired",
+          "Apple": "Bluetooth, Wired",
+          "Android": "Bluetooth, Wired"
+        }
+      },
+      "2.4G Adapter": { "kind": "text", "value": "USB-C" },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "D-input: BT 60-100Hz, Wired 100-200Hz; S-input: BT 60-200Hz, Wired/2.4G 125Hz; X-input: Wired/2.4G 250Hz"
+      },
+      "Joysticks": { "kind": "text", "value": "TMR (12-bit ADC)" },
+      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
+      "Triggers": {
+        "kind": "text",
+        "value": "Dual-mode: Linear Hall Effect / Non-linear micro-switch"
+      },
+      "Bumpers": { "kind": "text", "value": "Silicone" },
+      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true },
+      "Pro Back Paddle Buttons": { "kind": "boolean", "value": true },
+      "6-axis Motion Control": { "kind": "boolean", "value": true },
+      "Vibration": { "kind": "boolean", "value": true },
+      "Turbo": { "kind": "boolean", "value": true },
+      "Shake to wake": { "kind": "text", "value": "Switch 1 only" },
+      "Charging Dock": { "kind": "boolean", "value": true },
+      "Battery Capacity": { "kind": "number", "value": 1000, "unit": "mAh" },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software V2"
+      }
+    },
+    "_curatorNotes": "3.5mm Audio Jack and RGB Fire Ring rows are present in the on-page comparison table but rendered as empty cells; not mentioned in feature copy either way. Conservatively omitted (= 'no' in the comparison view per booleanByDefault)."
+  },
+
+  "8bitdo-pro-2-bluetooth-controller": {
+    "shopifyHandle": "8bitdo-pro-2-bluetooth-controller",
+    "officialSlug": "pro2",
+    "name": "Pro 2 (Hall Effect)",
+    "family": "Pro",
+    "tagline": "Previous-generation Pro flagship, now with Hall Effect sticks. Broadest platform support including Raspberry Pi.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": [
+          "Black",
+          "G Classic",
+          "Gray",
+          "Translucent Purple",
+          "Jade Green",
+          "Transparent Blue",
+          "Transparent Black"
+        ]
+      },
+      "Layout": { "kind": "text", "value": "Switch layout" },
+      "Compatibility": {
+        "kind": "list",
+        "value": [
+          "Switch 1",
+          "Switch 2",
+          "Windows",
+          "SteamOS",
+          "Android",
+          "Apple",
+          "Raspberry Pi"
+        ]
+      },
+      "Connectivity": { "kind": "text", "value": "Bluetooth, Wired" },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "D-input: BT 60Hz, Wired 100Hz; S-input: BT 60-200Hz, Wired 100Hz; X-input: Wired 100Hz"
+      },
+      "Joysticks": { "kind": "text", "value": "Hall Effect" },
+      "Triggers": { "kind": "text", "value": "Linear" },
+      "Bumpers": { "kind": "text", "value": "Silicone" },
+      "Pro Back Paddle Buttons": { "kind": "boolean", "value": true },
+      "6-axis Motion Control": { "kind": "boolean", "value": true },
+      "Vibration": { "kind": "boolean", "value": true },
+      "Turbo": { "kind": "boolean", "value": true },
+      "Battery Capacity": { "kind": "number", "value": 1000, "unit": "mAh" },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software (v1)"
+      }
+    },
+    "_curatorNotes": "Per Pro 3 comparison table: Pro 2 does NOT have Fast Bumpers (L4/R4), Charging Dock, or RGB Fire Ring (those rows are Pro-3-only). Switch 2 support added via firmware update. Switch compatibility does not support HD rumble or amiibo scanning."
+  },
+
+  "8bitdo-ultimate-2-wireless-controller": {
+    "shopifyHandle": "8bitdo-ultimate-2-wireless-controller",
+    "officialSlug": "ultimate-2-wireless-controller",
+    "name": "Ultimate 2 Wireless",
+    "family": "Ultimate",
+    "tagline": "Xbox-layout flagship for PC/Mac/SteamOS/Android. NOTE: does NOT support Nintendo Switch.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["White", "Black", "Purple", "Green (eShop exclusive)"]
+      },
+      "Layout": { "kind": "text", "value": "Xbox layout" },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Windows", "Android", "Apple", "SteamOS"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Windows": "2.4G, Wired",
+          "Android": "Bluetooth"
+        }
+      },
+      "2.4G Adapter": { "kind": "text", "value": "USB-C" },
+      "Polling Rate": { "kind": "text", "value": "2.4G / Wired 1000Hz" },
+      "Joysticks": { "kind": "text", "value": "TMR (12-bit ADC)" },
+      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
+      "Triggers": {
+        "kind": "text",
+        "value": "Dual-mode: Linear Hall Effect / Non-linear tactile"
+      },
+      "Bumpers": { "kind": "text", "value": "Tactile" },
+      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true },
+      "Pro Back Paddle Buttons": { "kind": "boolean", "value": true },
+      "6-axis Motion Control": { "kind": "boolean", "value": true },
+      "Vibration": { "kind": "boolean", "value": true },
+      "Turbo": { "kind": "boolean", "value": true },
+      "RGB Fire Ring": { "kind": "boolean", "value": true },
+      "Charging Dock": { "kind": "boolean", "value": true },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software V2"
+      }
+    },
+    "_curatorNotes": "Major naming hazard: 'Ultimate 2 Wireless' has NO Switch support, while 'Ultimate 2 Bluetooth' (a separate product) DOES. The comparison view should surface this asymmetry clearly in the Compatibility row. Battery capacity not listed on the page comparison table for this product."
+  },
+
+  "8bitdo-ultimate-2-bluetooth-controller": {
+    "shopifyHandle": "8bitdo-ultimate-2-bluetooth-controller",
+    "officialSlug": "ultimate-2-bluetooth-controller",
+    "name": "Ultimate 2 Bluetooth",
+    "family": "Ultimate",
+    "tagline": "Switch-layout flagship for Switch + PC. Counterpart to the (PC-only) Ultimate 2 Wireless.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["White", "Black", "Yellow (eShop exclusive)"]
+      },
+      "Layout": { "kind": "text", "value": "Switch layout" },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Switch 1", "Switch 2", "Windows"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Switch": "Bluetooth, 2.4G, Wired",
+          "Windows": "2.4G, Wired"
+        }
+      },
+      "2.4G Adapter": { "kind": "text", "value": "USB-C" },
+      "Joysticks": { "kind": "text", "value": "TMR (12-bit ADC)" },
+      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
+      "Triggers": {
+        "kind": "text",
+        "value": "Dual-mode: Linear Hall Effect / Non-linear tactile"
+      },
+      "Bumpers": { "kind": "text", "value": "Tactile" },
+      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true },
+      "Pro Back Paddle Buttons": { "kind": "boolean", "value": true },
+      "6-axis Motion Control": { "kind": "boolean", "value": true },
+      "Vibration": { "kind": "boolean", "value": true },
+      "Turbo": { "kind": "boolean", "value": true },
+      "RGB Fire Ring": { "kind": "boolean", "value": true },
+      "Charging Dock": { "kind": "boolean", "value": true },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software V2"
+      }
+    },
+    "_curatorNotes": "Major naming hazard (see Ultimate 2 Wireless entry). Polling Rate row was present on the comparison table but rendered as empty — likely 2.4G/Wired 1000Hz to match the rest of the line. Confirm before shipping."
+  },
+
+  "8bitdo-ultimate-2c-wireless-controller-pc": {
+    "shopifyHandle": "8bitdo-ultimate-2c-wireless-controller-pc",
+    "officialSlug": "ultimate-2c-wireless-controller",
+    "name": "Ultimate 2C Wireless (PC)",
+    "family": "Ultimate 2C",
+    "tagline": "Budget Xbox-layout controller for PC and Android. Hall Effect sticks at $29.99.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": [
+          "Purple",
+          "Green",
+          "Mint",
+          "Peach",
+          "Transparent Black",
+          "Blueberry (SE)",
+          "Brownie (SE)"
+        ]
+      },
+      "Layout": { "kind": "text", "value": "Xbox layout" },
+      "Compatibility": { "kind": "list", "value": ["Windows", "Android"] },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Windows": "2.4G, Wired",
+          "Android": "Bluetooth"
+        }
+      },
+      "2.4G Adapter": { "kind": "text", "value": "USB-A" },
+      "Polling Rate": { "kind": "text", "value": "2.4G / Wired 1000Hz" },
+      "Joysticks": { "kind": "text", "value": "Hall Effect" },
+      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
+      "Triggers": { "kind": "text", "value": "Linear (Hall Effect)" },
+      "Bumpers": { "kind": "text", "value": "Tactile" },
+      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true }
+    },
+    "_curatorNotes": "Per the 2C-wireless-vs-C-wireless comparison table: Pro Back Paddles, 3.5mm Audio Jack, 6-axis Motion, Vibration, Turbo, RGB Fire Ring, Charging Dock, Ultimate Software all rendered as empty in markdown. Treated as 'not present' (booleanByDefault). The page's feature copy confirms Hall Effect sticks+triggers, refined bumpers, custom mapping, mode switch — no mention of vibration/motion/RGB/dock."
+  },
+
+  "8bitdo-ultimate-2c-wired-controller": {
+    "shopifyHandle": "8bitdo-ultimate-2c-wired-controller",
+    "officialSlug": "ultimate-2c-wired-controller",
+    "name": "Ultimate 2C Wired",
+    "family": "Ultimate 2C",
+    "tagline": "Cheapest entry, wired-only. Hall Effect sticks at $19.99.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Purple", "Green", "Mint", "Peach"]
+      },
+      "Layout": { "kind": "text", "value": "Xbox layout" },
+      "Compatibility": { "kind": "list", "value": ["Windows", "Android"] },
+      "Connectivity": { "kind": "text", "value": "Wired (USB-C)" },
+      "Polling Rate": { "kind": "text", "value": "1000Hz" },
+      "Joysticks": { "kind": "text", "value": "Hall Effect" },
+      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
+      "Triggers": { "kind": "text", "value": "Linear (Hall Effect)" },
+      "Bumpers": { "kind": "text", "value": "Tactile" },
+      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true }
+    },
+    "_curatorNotes": "Same pattern as 2C Wireless — all premium features (back paddles, motion, vibration, turbo, RGB, audio jack) are absent from the comparison table and feature copy; treated as not present. No battery section since it's wired-only."
+  },
+
+  "8bitdo-sn30-pro-hall-effect-joystick": {
+    "shopifyHandle": "8bitdo-sn30-pro-hall-effect-joystick",
+    "officialSlug": "sn30-pro-g-classic-or-sn30-pro-sn",
+    "name": "SN30 Pro (Hall Effect)",
+    "family": "SN30",
+    "tagline": "SNES-style retro flagship, now with Hall Effect sticks. Broad platform support including Raspberry Pi.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": [
+          "Gray",
+          "G Classic",
+          "SN",
+          "Crystal Purple (SE)",
+          "Jade Green (SE)"
+        ]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "SNES retro layout (two-level shoulder buttons)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": [
+          "Switch 1",
+          "Switch 2",
+          "Windows",
+          "SteamOS",
+          "Android",
+          "Apple",
+          "Raspberry Pi"
+        ]
+      },
+      "Connectivity": { "kind": "text", "value": "Bluetooth, Wired" },
+      "Joysticks": { "kind": "text", "value": "Hall Effect" },
+      "Triggers": { "kind": "text", "value": "Linear" },
+      "6-axis Motion Control": { "kind": "boolean", "value": true },
+      "Vibration": { "kind": "boolean", "value": true }
+    },
+    "_curatorNotes": "Older product, no embedded comparison table on its marketing page — specs above come from the page's hero/feature copy ('Hall Effect joysticks', 'rumble vibration', 'motion controls', 'wireless bluetooth', 'rechargeable battery', 'USB-C connector'). Battery capacity, polling rate, Ultimate Software support, and back paddles all unclear from the page; left out rather than guessed. Switch 2 support added via firmware update. Switch compatibility doesn't support HD rumble or amiibo."
+  },
+
+  "8bitdo-lite-2": {
+    "shopifyHandle": "8bitdo-lite-2-bluetooth-gamepad-for-switch-android-and-raspberry-pi",
+    "officialSlug": "lite2",
+    "name": "Lite 2",
+    "family": "Lite",
+    "tagline": "Ultra-portable, fully-featured small-form-factor controller. Made for 2D games and travel.",
+    "specs": {
+      "Color/Edition": { "kind": "list", "value": ["Turquoise", "Pink"] },
+      "Layout": {
+        "kind": "text",
+        "value": "Switch Lite-inspired (compact, no full sticks)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Switch 1", "Switch 2", "Android", "Apple", "Raspberry Pi"]
+      },
+      "Connectivity": { "kind": "text", "value": "Bluetooth, Wired (USB-C)" },
+      "Joysticks": { "kind": "text", "value": "Standard mini joysticks" },
+      "6-axis Motion Control": {
+        "kind": "text",
+        "value": "Yes, but only in S (Switch) mode"
+      },
+      "Vibration": {
+        "kind": "text",
+        "value": "Yes, but only in S (Switch) mode (no HD rumble on Switch)"
+      },
+      "Turbo": { "kind": "text", "value": "Yes, in D-input mode" },
+      "Mode Switch": {
+        "kind": "text",
+        "value": "S (Switch) / D (Android/Apple/Pi)"
+      },
+      "Battery Capacity": { "kind": "number", "value": 480, "unit": "mAh" },
+      "Battery Life": { "kind": "text", "value": "Up to 20 hours" }
+    },
+    "_curatorNotes": "Does NOT officially support Windows/PC directly per the 8bitdo.com page (Switch, Android, Apple, Raspberry Pi only). Some users report D-input working with PC via Bluetooth but it's unsupported. Ultimate Software is not in its supported-devices list. For Switch+PC+Mac users, this controller MISSES PC support."
+  }
+}
