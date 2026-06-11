@@ -2,7 +2,7 @@
 
 A side‑by‑side comparison tool for 8BitDo game controllers. Pick up to 3 controllers from the [official 8BitDo store](https://shop.8bitdo.com/collections/all-products?filter.p.product_type=Game+Controllers) and see prices and the full published spec set lined up next to each other.
 
-> **Status:** Phase 2 done — Browse view live (catalog grid, filters, comparison‑selection bar, persistence). Compare page is a placeholder for now; the full CSS Grid comparison table lands in Phase 3.
+> **Status:** Phase 3 done — Browse and Compare both live. Browse: catalog grid, filters, comparison‑selection bar, persistence. Compare: CSS Grid side‑by‑side view with three‑state difference highlighting and two‑way URL sync. Phase 4 covers a11y polish and deploy.
 
 ## Why
 
@@ -48,7 +48,9 @@ Vite 8 + React 19 + TypeScript, Tailwind CSS v4 (`@tailwindcss/vite` plugin), Re
 │   ├── components/
 │   │   ├── ControllerCard.tsx     grid card with price, sale badge, +Compare
 │   │   ├── FiltersSidebar.tsx     search + multi-select filters
-│   │   └── CompareBar.tsx         fixed bottom bar with selection chips
+│   │   ├── CompareBar.tsx         fixed bottom bar with selection chips
+│   │   ├── ComparisonGrid.tsx     CSS-Grid side-by-side comparison view
+│   │   └── SpecValueCell.tsx      per-SpecValue.kind cell renderer
 │   ├── context/
 │   │   ├── CatalogContext.ts      context object + initial value
 │   │   ├── CatalogProvider.tsx    SWR generator wired into React
@@ -57,7 +59,7 @@ Vite 8 + React 19 + TypeScript, Tailwind CSS v4 (`@tailwindcss/vite` plugin), Re
 │   │   └── use{Catalog,Compare}.ts  thin useContext hooks
 │   ├── pages/
 │   │   ├── BrowsePage.tsx         grid + filters + bar
-│   │   └── ComparePage.tsx        Phase 2 stub; Phase 3 builds the grid
+│   │   └── ComparePage.tsx        comparison view with two-way URL sync
 │   ├── data/
 │   │   ├── controllerSpecs.json   curated specs, keyed by Shopify handle
 │   │   ├── specCatalog.ts         canonical labels, sections, label normaliser
@@ -67,7 +69,8 @@ Vite 8 + React 19 + TypeScript, Tailwind CSS v4 (`@tailwindcss/vite` plugin), Re
 │   │   ├── shopify.ts             /products.json fetcher + price-min logic
 │   │   ├── catalog/               merge (pure) + cache (localStorage) + SWR
 │   │   ├── filter.ts              FilterState + predicate builder
-│   │   └── compare.ts             selection reducer + URL parse/serialise
+│   │   ├── compare.ts             selection reducer + URL parse/serialise
+│   │   └── compareDiff.ts         row builder + three-state diff classifier
 │   ├── types/controller.ts        SpecValue, Controller, SpecCatalog
 │   ├── App.tsx                    React Router routes
 │   ├── App.test.tsx               smoke test
