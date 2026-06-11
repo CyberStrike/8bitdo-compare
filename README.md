@@ -17,17 +17,18 @@ pnpm dev          # http://localhost:5173
 
 Other scripts:
 
-| Script               | What it does                               |
-| -------------------- | ------------------------------------------ |
-| `pnpm dev`           | Vite dev server with HMR                   |
-| `pnpm build`         | Type‑check + production build into `dist/` |
-| `pnpm preview`       | Preview the production build locally       |
-| `pnpm test`          | Run the Vitest suite once                  |
-| `pnpm test:watch`    | Re‑run tests on file change                |
-| `pnpm test:coverage` | Tests with v8 coverage report              |
-| `pnpm lint`          | ESLint over the repo                       |
-| `pnpm format`        | Format everything with Prettier            |
-| `pnpm format:check`  | Verify formatting without writing          |
+| Script                  | What it does                                                 |
+| ----------------------- | ------------------------------------------------------------ |
+| `pnpm dev`              | Vite dev server with HMR                                     |
+| `pnpm build`            | Type‑check + production build into `dist/`                   |
+| `pnpm preview`          | Preview the production build locally                         |
+| `pnpm test`             | Run the Vitest suite once                                    |
+| `pnpm test:watch`       | Re‑run tests on file change                                  |
+| `pnpm test:coverage`    | Tests with v8 coverage report                                |
+| `pnpm lint`             | ESLint over the repo                                         |
+| `pnpm format`           | Format everything with Prettier                              |
+| `pnpm format:check`     | Verify formatting without writing                            |
+| `pnpm refresh-fallback` | Regenerate `src/data/fallbackCatalog.json` from live Shopify |
 
 CI runs `lint`, `format:check`, `test`, and `build` on every PR (see `.github/workflows/ci.yml`).
 
@@ -39,16 +40,21 @@ Vite 8 + React 19 + TypeScript, Tailwind CSS v4 (`@tailwindcss/vite` plugin), Re
 
 ```
 /
-├── data/                          seed data, will move to src/data in Phase 1
-│   ├── specCatalog.ts             canonical spec labels, sections, types
-│   ├── controllerSpecs.json       per-controller spec entries
-│   └── README.md                  data conventions
 ├── docs/specs/                    design and implementation plan
-│   ├── 2026-06-10-controller-comparison-design.md
-│   └── 2026-06-10-controller-comparison-plan.md
 ├── public/                        static assets served as-is
+├── scripts/
+│   └── refresh-fallback.ts        regenerates src/data/fallbackCatalog.json
 ├── src/
-│   ├── App.tsx                    landing page (Phase 0 placeholder)
+│   ├── data/
+│   │   ├── controllerSpecs.json   curated specs, keyed by Shopify handle
+│   │   ├── specCatalog.ts         canonical labels, sections, label normaliser
+│   │   ├── fallbackCatalog.json   bootstrap snapshot for offline / first paint
+│   │   └── README.md              data conventions
+│   ├── services/
+│   │   ├── shopify.ts             /products.json fetcher + price-min logic
+│   │   └── catalog/               merge (pure) + cache (localStorage) + SWR
+│   ├── types/controller.ts        SpecValue, Controller, SpecCatalog
+│   ├── App.tsx                    Phase 1 dev view: JSON-dump of catalog
 │   ├── App.test.tsx               smoke test
 │   ├── index.css                  Tailwind import + base layer
 │   ├── main.tsx                   React entry point

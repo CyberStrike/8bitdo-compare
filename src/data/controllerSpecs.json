@@ -9,8 +9,8 @@
     "curatorTodos": "Several rows on 8BitDo's comparison tables render as empty cells in the markdown fetch (checkmark icons), so a small number of boolean specs are conservatively omitted rather than guessed. Worth a second pass against the rendered marketing pages before shipping; see per-entry _curatorNotes."
   },
 
-  "8bitdo-pro-3-bluetooth-gamepad": {
-    "shopifyHandle": "8bitdo-pro-3-bluetooth-gamepad",
+  "8bitdo-pro-3": {
+    "shopifyHandle": "8bitdo-pro-3",
     "officialSlug": "pro3",
     "name": "Pro 3",
     "family": "Pro",
@@ -126,8 +126,8 @@
     "_curatorNotes": "Per Pro 3 comparison table: Pro 2 does NOT have Fast Bumpers (L4/R4), Charging Dock, or RGB Fire Ring (those rows are Pro-3-only). Switch 2 support added via firmware update. Switch compatibility does not support HD rumble or amiibo scanning."
   },
 
-  "8bitdo-ultimate-2-wireless-controller": {
-    "shopifyHandle": "8bitdo-ultimate-2-wireless-controller",
+  "8bitdo-ultimate-2": {
+    "shopifyHandle": "8bitdo-ultimate-2",
     "officialSlug": "ultimate-2-wireless-controller",
     "name": "Ultimate 2 Wireless",
     "family": "Ultimate",
@@ -219,8 +219,8 @@
     "_curatorNotes": "Major naming hazard (see Ultimate 2 Wireless entry). Polling Rate row was present on the comparison table but rendered as empty — likely 2.4G/Wired 1000Hz to match the rest of the line. Confirm before shipping."
   },
 
-  "8bitdo-ultimate-2c-wireless-controller-pc": {
-    "shopifyHandle": "8bitdo-ultimate-2c-wireless-controller-pc",
+  "8bitdo-ultimate-2c-wireless-controller": {
+    "shopifyHandle": "8bitdo-ultimate-2c-wireless-controller",
     "officialSlug": "ultimate-2c-wireless-controller",
     "name": "Ultimate 2C Wireless (PC)",
     "family": "Ultimate 2C",
@@ -282,8 +282,8 @@
     "_curatorNotes": "Same pattern as 2C Wireless — all premium features (back paddles, motion, vibration, turbo, RGB, audio jack) are absent from the comparison table and feature copy; treated as not present. No battery section since it's wired-only."
   },
 
-  "8bitdo-sn30-pro-hall-effect-joystick": {
-    "shopifyHandle": "8bitdo-sn30-pro-hall-effect-joystick",
+  "8bitdo-sn30-pro-bluetooth-gamepad": {
+    "shopifyHandle": "8bitdo-sn30-pro-bluetooth-gamepad",
     "officialSlug": "sn30-pro-g-classic-or-sn30-pro-sn",
     "name": "SN30 Pro (Hall Effect)",
     "family": "SN30",
@@ -324,7 +324,7 @@
     "_curatorNotes": "Older product, no embedded comparison table on its marketing page — specs above come from the page's hero/feature copy ('Hall Effect joysticks', 'rumble vibration', 'motion controls', 'wireless bluetooth', 'rechargeable battery', 'USB-C connector'). Battery capacity, polling rate, Ultimate Software support, and back paddles all unclear from the page; left out rather than guessed. Switch 2 support added via firmware update. Switch compatibility doesn't support HD rumble or amiibo."
   },
 
-  "8bitdo-lite-2": {
+  "8bitdo-lite-2-bluetooth-gamepad-for-switch-android-and-raspberry-pi": {
     "shopifyHandle": "8bitdo-lite-2-bluetooth-gamepad-for-switch-android-and-raspberry-pi",
     "officialSlug": "lite2",
     "name": "Lite 2",

@@ -1,54 +1,25 @@
 /**
- * Canonical spec labels used in `controllerSpecs.json`.
+ * Canonical spec labels recognised by the comparison view.
  *
- * This is the source of truth for:
+ * This file is the source of truth for:
  *   - which section a spec is rendered in
- *   - whether a spec is a boolean where "missing" should mean "no"
- *     (vs a free-form spec where "missing" means "unknown / not listed")
+ *   - whether a missing spec means "no" (`booleanByDefault: true`) or
+ *     "unknown / not listed by 8BitDo"
  *   - the display order within a section
  *
  * When a new spec label appears on an 8BitDo product page, add it here AND
- * add the corresponding raw-label mapping below if 8BitDo writes it differently
- * across pages (e.g. "Joysticks" vs "Joystick" vs "Stick Type").
+ * add the corresponding raw-label mapping below if 8BitDo writes it
+ * differently across pages (e.g. "Joysticks" vs "Joystick" vs "Stick Type").
  *
  * v1 seed — derived from the comparison tables embedded on
- *   - https://www.8bitdo.com/pro3/
- *   - https://www.8bitdo.com/ultimate-2-wireless-controller/
- *   - https://www.8bitdo.com/ultimate-2-bluetooth-controller/
- *   - https://www.8bitdo.com/ultimate-2c-wireless-controller/
- *   - https://www.8bitdo.com/ultimate-2c-wired-controller/
- *   - https://www.8bitdo.com/sn30-pro-g-classic-or-sn30-pro-sn/
- *   - https://www.8bitdo.com/lite2/
- *   - https://www.8bitdo.com/pro2/
+ *   https://www.8bitdo.com/{pro3,pro2,ultimate-2-wireless-controller,
+ *   ultimate-2-bluetooth-controller,ultimate-2c-wireless-controller,
+ *   ultimate-2c-wired-controller,sn30-pro-g-classic-or-sn30-pro-sn,lite2}/
  */
 
-export type SpecSection =
-  | 'identity'
-  | 'connectivity'
-  | 'compatibility'
-  | 'sticks-and-triggers'
-  | 'buttons-and-feedback'
-  | 'battery-physical'
-  | 'software'
-  | 'other'
+import type { SpecCatalog } from '../types/controller'
 
-export type SpecCatalogEntry = {
-  section: SpecSection
-  /**
-   * When `true`, a controller that does NOT list this spec is treated as
-   * "does not have this feature" rather than "unknown."
-   *
-   * Use this only for binary features where 8BitDo's convention is that
-   * presence in the comparison table = has it, absence = doesn't have it.
-   */
-  booleanByDefault?: boolean
-  /**
-   * Sort order within the section.
-   */
-  displayOrder: number
-}
-
-export const specCatalog: Record<string, SpecCatalogEntry> = {
+export const specCatalog: SpecCatalog = {
   'Color/Edition': { section: 'identity', displayOrder: 10 },
   Layout: { section: 'identity', displayOrder: 20 },
 
@@ -122,10 +93,10 @@ export const specCatalog: Record<string, SpecCatalogEntry> = {
  * 8BitDo writes the same spec slightly differently across product pages.
  * Map every raw label we've seen to the canonical key above.
  *
- * Keys are case-sensitive and whitespace-normalised. When you add a new
- * page's data, drop any unseen raw labels in here.
+ * Keys are case-sensitive. When you add a new page's data, drop any unseen
+ * raw labels in here so they collapse to the canonical key.
  */
-export const rawLabelToCanonical: Record<string, keyof typeof specCatalog> = {
+export const rawLabelToCanonical: Record<string, string> = {
   'Color/Edition': 'Color/Edition',
   Layout: 'Layout',
   Compatibility: 'Compatibility',
@@ -134,6 +105,7 @@ export const rawLabelToCanonical: Record<string, keyof typeof specCatalog> = {
   Bumpers: 'Bumpers',
   'Fast Bumpers (L4/R4)': 'Fast Bumpers (L4/R4)',
   Joysticks: 'Joysticks',
+  // 8bitdo.com renders this without a space between "resistant" and "Joystick".
   'Wear-resistantJoystick Rings': 'Wear-resistant Joystick Rings',
   'Wear-resistant Joystick Rings': 'Wear-resistant Joystick Rings',
   'Polling Rate': 'Polling Rate',
@@ -149,4 +121,17 @@ export const rawLabelToCanonical: Record<string, keyof typeof specCatalog> = {
   'Battery Capacity': 'Battery Capacity',
   'Battery Life': 'Battery Life',
   '2.4G Adapter': '2.4G Adapter',
+  Dimensions: 'Dimensions',
+  Weight: 'Weight',
+  'Mode Switch': 'Mode Switch',
+}
+
+/**
+ * Normalise a raw spec label as it appears on an 8BitDo product page to its
+ * canonical form. Returns `null` when the label is unrecognised — callers
+ * should treat that as a curator follow-up (add the mapping here).
+ */
+export function normaliseSpecLabel(rawLabel: string): string | null {
+  const trimmed = rawLabel.trim()
+  return rawLabelToCanonical[trimmed] ?? null
 }
