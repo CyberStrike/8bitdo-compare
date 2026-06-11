@@ -50,25 +50,27 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
 
 **Heads-up for Phase 2:** `Date.now()` cannot be called during render under React 19's hooks plugin (`react-hooks/purity` rule). For relative timestamps, capture `Date.now()` inside the effect that sets state and store it next to the snapshot.
 
-## Phase 2 — Browse view
+## Phase 2 — Browse view ✅
+
+**Status:** done — landed on `cursor/phase-2-browse-view-2069`.
 
 **Goal:** the user can see, filter, and select controllers.
 
-1. `CatalogContext` and `CatalogProvider` exposing `controllers`, `status`, `fetchedAt`, `refresh()`. Provider sits at the app root.
-2. `CompareContext` and `CompareProvider`:
-   - Holds `selectedIds: string[]` (cap 3), with `add(id)`, `remove(id)`, `clear()`, `toggle(id)`.
-   - `toggle` is a no‑op when at cap and the id isn't already selected.
-   - Persists to `localStorage` under `compare:v1`.
-3. `ControllerCard` component — image, name, family chip, price (with strike‑through compare‑at if on sale), spec icons (connectivity badges, Hall‑Effect/TMR badge if applicable, Switch/PC/Mac glyphs), and the "+ Compare" / "✓ In comparison" / "Cap reached" button states.
-4. `FiltersSidebar` component — compatibility multi‑select, connectivity multi‑select, joystick‑type select, price‑range slider, on‑sale toggle, text search. Filters live in component state and produce a filter predicate composed in a single memoised selector.
-5. `CompareBar` component — fixed bottom bar visible on Browse when 1+ controllers are selected; shows chips with name + remove ✕, and a "Compare (N)" CTA that routes to `/compare?ids=…`.
-6. Wire the Browse page (`/`) to: `CatalogProvider` data + `FiltersSidebar` + grid of `ControllerCard` + `CompareBar`.
-7. Tests:
-   - Filter predicate unit tests (each filter dimension independently and combined).
-   - `CompareContext` reducer tests (add at cap is a no‑op; remove; persist round‑trip).
-   - One RTL test that renders Browse with stubbed catalog, selects two controllers, asserts the CompareBar count.
+1. ✅ `src/context/CatalogContext.ts` + `CatalogProvider.tsx` — split into separate files because exporting both context and provider from one file breaks Vite's Fast Refresh (the `react-refresh/only-export-components` rule). Provider exposes `controllers`, `status`, `fetchedAt`, `fromCache`, `error`, `observedAt`, `refresh()`, sits at the app root, drives the SWR async generator on mount.
+2. ✅ `src/context/CompareContext.ts` + `CompareProvider.tsx` — `useReducer` with the `compareReducer` from `services/compare.ts`. `defaultStorage()` is called inline in the lazy reducer initializer (using a `useRef` here trips `react-hooks/refs`). State is persisted to `localStorage` under `compare:v1` via an effect.
+3. ✅ `ControllerCard` component — image, family chip, name, tagline, price (strike‑through compare‑at when on sale), Sale / Sold out / Specs pending badges, "+ Compare" / "✓ In comparison" / "Cap reached" / "Specs pending" button states (the last two render disabled), Store ↗ link out.
+4. ✅ `FiltersSidebar` component — search box, compatibility multi‑select (Switch / Windows / Mac/Apple / SteamOS / Android / Raspberry Pi), connectivity multi‑select (Bluetooth / 2.4G / Wired), joystick tech multi‑select (TMR / Hall Effect / Standard), min/max price inputs, on‑sale toggle, hide‑specs‑pending toggle, reset button. All filters AND together; "compatibility AND" intentionally so multi‑platform users get the strict filter they want. Defined as a pure `FilterState` shape with a memoised predicate builder in `services/filter.ts`.
+5. ✅ `CompareBar` component — fixed bottom region (with `role="region"` and `aria-label` for screen readers), shows chips for each selected controller with a per‑chip remove ✕ button, a Clear button, and a Compare CTA that routes to `/compare?ids=…`.
+6. ✅ Browse page assembles sidebar + card grid + bar; "Refresh prices" button calls `loadCatalog()` directly. Cache‑staleness banner appears when `fromCache` is true. Empty‑state copy when zero results.
+7. ✅ Compare route stub redirects URL ids into `CompareContext` so deep‑linking works; full grid lands in Phase 3.
+8. ✅ Tests — 92 across 9 files (added 46 in this phase):
+   - `services/filter.test.ts` — 22 tests covering each filter dimension independently and AND‑combined; platform bucket fold (Switch ↔ Switch 1/Switch 2; Mac/Apple ↔ Apple); connectivity over both `text` and `perPlatform` shapes.
+   - `services/compare.test.ts` — 19 tests covering reducer (add/remove/toggle/clear/set), cap enforcement, identity stability, persistence roundtrip, oversized‑payload truncation, malformed JSON, URL parse/serialise.
+   - `pages/BrowsePage.test.tsx` — 5 RTL tests: card render, the plan‑mandated "select 2 → CompareBar shows 2/3" test, cap reached → button disabled, search narrows, Specs pending badge + disabled button.
 
-**Exit criterion:** I can browse, filter, and accumulate up to 3 controllers; the bottom bar reflects the selection across refreshes.
+**Exit criterion (met):** I can browse, filter, and accumulate up to 3 controllers; the bottom bar reflects the selection across refreshes (verified via persistence tests).
+
+**Heads‑up for Phase 3:** the Compare page is currently a placeholder that consumes `?ids=…` and seeds `CompareContext`. The CSS Grid comparison table replaces this stub.
 
 ## Phase 3 — Compare view
 
