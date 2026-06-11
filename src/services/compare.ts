@@ -77,12 +77,15 @@ export function readCompareState(storage: CatalogStorage | null): CompareState {
   const raw = storage.getItem(COMPARE_STORAGE_KEY)
   if (!raw) return emptyCompareState
   try {
-    const parsed = JSON.parse(raw) as CompareState
+    const parsed = JSON.parse(raw) as { selectedIds?: unknown }
     if (!Array.isArray(parsed?.selectedIds)) return emptyCompareState
-    return compareReducer(emptyCompareState, {
-      type: 'set',
-      ids: parsed.selectedIds,
-    })
+    // Filter out any non-string entries — a tampered or schema-drifted
+    // payload mustn't leak non-string ids into the reducer or into URL
+    // serialisation (a number id would round-trip as e.g. "42" silently).
+    const ids = parsed.selectedIds.filter(
+      (id): id is string => typeof id === 'string',
+    )
+    return compareReducer(emptyCompareState, { type: 'set', ids })
   } catch {
     return emptyCompareState
   }

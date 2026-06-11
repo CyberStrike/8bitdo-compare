@@ -131,6 +131,15 @@ describe('persistence', () => {
     expect(readCompareState(storage)).toEqual(emptyCompareState)
   })
 
+  it('filters out non-string entries from a tampered payload', () => {
+    const storage = new MemoryStorage()
+    storage.setItem(
+      COMPARE_STORAGE_KEY,
+      JSON.stringify({ selectedIds: ['a', 42, null, 'b', { id: 'c' }] }),
+    )
+    expect(readCompareState(storage).selectedIds).toEqual(['a', 'b'])
+  })
+
   it('handles null storage', () => {
     expect(readCompareState(null)).toEqual(emptyCompareState)
     expect(() => writeCompareState({ selectedIds: ['a'] }, null)).not.toThrow()

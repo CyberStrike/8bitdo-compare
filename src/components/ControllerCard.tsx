@@ -36,7 +36,7 @@ export function ControllerCard({ controller }: Props) {
         {controller.imageUrl ? (
           <img
             src={controller.imageUrl}
-            alt=""
+            alt={controller.name}
             loading="lazy"
             className="h-full w-full object-contain p-2"
           />
@@ -112,7 +112,7 @@ export function ControllerCard({ controller }: Props) {
           <a
             href={controller.shopUrl}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-600 transition hover:bg-zinc-50 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
           >
             Store ↗

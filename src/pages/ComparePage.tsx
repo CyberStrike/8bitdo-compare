@@ -62,7 +62,10 @@ export function ComparePage() {
           <ul className="list-disc pl-5">
             {selected.map((c) => (
               <li key={c.id}>
-                <strong>{c.name}</strong> — ${c.basePriceUSD?.toFixed(2)}{' '}
+                <strong>{c.name}</strong> —{' '}
+                {c.basePriceUSD === null
+                  ? 'price unavailable'
+                  : `$${c.basePriceUSD.toFixed(2)}`}{' '}
                 <span className="text-amber-700 dark:text-amber-300">
                   ({Object.keys(c.specs).length} specs)
                 </span>
