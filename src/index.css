@@ -14,3 +14,24 @@ body,
 body {
   @apply bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100;
 }
+
+/*
+ * Comparison grid responsive template.
+ *
+ * Mobile: single-column stack — header cards stack, each spec row renders
+ *   label then values vertically, section headings span full width.
+ * Desktop (>= md / 768px): a label column on the left and one column per
+ *   selected controller; the page sets `--comparison-grid-cols` via inline
+ *   style so the column count is dynamic without spraying every possible
+ *   template into Tailwind's class set.
+ */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: var(--comparison-grid-cols, 1fr);
+  }
+}

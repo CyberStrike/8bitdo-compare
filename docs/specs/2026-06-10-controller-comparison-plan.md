@@ -72,26 +72,25 @@ This plan turns the design into ordered, independently‑shippable phases. Each 
 
 **Heads‑up for Phase 3:** the Compare page is currently a placeholder that consumes `?ids=…` and seeds `CompareContext`. The CSS Grid comparison table replaces this stub.
 
-## Phase 3 — Compare view
+## Phase 3 — Compare view ✅
+
+**Status:** done — landed on `cursor/phase-3-compare-view-2069`.
 
 **Goal:** the selected controllers render as a side‑by‑side comparison with differences highlighted.
 
-1. `/compare` route reads `ids` from the query string, resolves to `Controller[]`, drops missing ones with a toast.
-2. `ComparisonGrid` component — built with CSS Grid on `<div>` elements (no `<table>`, see design §11). Rows are derived from the union of all `specs` keys across the selected controllers, then grouped by the section assigned in `specCatalog.ts` (`Pricing & availability`, `Connectivity`, `Compatibility`, `Sticks & triggers`, `Buttons & feedback`, `Battery & physical`, `Software`, `Other`). Each row is a `{ canonicalLabel, values: SpecValue[] }` where `values[i]` is the spec value for the `i`th selected controller (or a `missing` marker if that controller does not list this spec). The renderer is per‑`SpecValue.kind` (price formatter for pricing rows, list‑of‑pill renderer for `list`, boolean check/✕ for `boolean`, key:value table for `perPlatform`, etc).
-3. Three‑state difference highlighting (per design §7):
-   - **All equal** → quiet row.
-   - **All present but values differ** → row accent + emphasised cell background + non‑colour dot indicator on differing cells.
-   - **Present on some, missing on others** → stronger row accent; missing cells render `—` with a tooltip. A small `classifyRow(values, catalogEntry)` helper returns one of `"equal" | "differ" | "partial"`.
-     Section groups that end up with zero rows after filtering (none of the selected controllers expose any spec in that section) are collapsed.
-4. Column header — image, name, sale badge, link to the official product page, "✕ Remove" button that updates `CompareContext` and the URL.
-5. Empty‑column slot when fewer than 3 are selected — a "+ Add controller" cell that links back to `/`.
-6. Responsive: the grid template collapses from `minmax(140px, auto) repeat(N, 1fr)` on `≥ md` to `1fr` on `< md`. On mobile each controller becomes a vertical card with the row label shown inline next to each value (e.g. "Connectivity: Bluetooth, 2.4G"). Same DOM, different `grid-template-columns` and a couple of `display` swaps — no conditional rendering.
-7. Tests:
-   - `classifyRow` unit tests across each `SpecValue.kind` and all three classification outcomes (equal / differ / partial), including array order normalisation for `list` and key‑order normalisation for `perPlatform`.
-   - Row‑derivation unit test: union of spec keys across 3 controllers produces the expected ordered row list per section.
-   - RTL test: render with 3 fixture controllers — assert that the price row has the differ accent, the equal Vibration row is quiet, and an "RGB Fire Ring" row present on only one controller renders the partial accent + `—` cells for the other two.
+1. ✅ `/compare` reads `ids` from the query string via `useSearchParams`. URL ↔ state is a **single direction‑aware effect** with refs tracking the last URL ids and last state ids. The original approach with two separate effects (URL → state and state → URL) raced on the first render — both fired before either had applied its setState, so each "won" and they stomped on each other into an infinite oscillation. The single‑effect pattern picks the direction based on which side changed since the last sync. Invalid ids stay in state so the banner can surface "N controllers in your link are no longer available." Banner clears when the user removes the dead ids via the header X (state → URL sync rewrites the URL).
+2. ✅ `components/ComparisonGrid.tsx` built with CSS Grid on `<div>`s (no `<table>`, design §11). Rows derived from union of spec keys across selected controllers, grouped into `<section>`s. Renderer per `SpecValue.kind` lives in `components/SpecValueCell.tsx` — check/✕ for `boolean`, pills for `list`, key/value list for `perPlatform`, formatted text for `text` and `number`.
+3. ✅ Three‑state diff highlighting via `services/compareDiff.ts`'s `classifyRow`. `buildComparisonRows` does the union + grouping + ordering. Empty sections are collapsed. `booleanByDefault: true` specs that are absent resolve to `{ kind: 'boolean', value: false }` so `Vibration` on a controller that doesn't list it shows ✕ rather than `—` — matching how 8BitDo's own comparison tables read.
+4. ✅ Header card per controller: image, name, Official page ↗ + Shop ↗ links, ✕ Remove button.
+5. ✅ "+ Add controller" slot when fewer than `COMPARE_CAP` selected, linking back to `/browse`.
+6. ✅ Responsive: grid template via CSS variable (`--comparison-grid-cols`) set by inline style. Mobile collapses to `grid-template-columns: 1fr` via a media query in `index.css`, avoiding Tailwind's dynamic‑class‑name problem (you can't compose Tailwind class names at runtime since the JIT scans source files for static class strings). On mobile, header cards stack and each spec row renders label above its N values. Full per‑controller card layout deferred to Phase 4 polish.
+7. ✅ Tests — 135 total (added 43 in this phase):
+   - `services/compareDiff.test.ts` — 32 tests: `valuesEqual` per `SpecValue.kind` (with array/record order normalisation), `classifyRow` across all three outcomes including the `partial` case, `resolveSpec` for explicit / absent / booleanByDefault‑absent / catalog‑missing, `buildComparisonRows` for union + grouping + ordering + section routing, `buildPricingRows` for differ detection, sale annotation, null prices.
+   - `pages/ComparePage.test.tsx` — 10 RTL tests: empty state, header cards, add slot present/absent at cap, dead‑id banner, price row classification (differ vs equal), partial spec accent + `—` rendering, equal Vibration row quiet, X removes from comparison and shrinks selection.
 
-**Exit criterion:** dropping 2–3 fixtures into the URL produces a readable comparison; removing a column updates URL + state in sync.
+**Exit criterion (met):** dropping 2–3 fixtures into the URL produces a readable comparison; removing a column updates URL + state in sync (the two‑way sync was the trickiest bit — see the racing‑effects fix above).
+
+**Heads‑up for Phase 4 / future polish:** the mobile layout currently stacks each spec row's label above its values rather than rendering one full per‑controller card with all rows repeated. The design §11 ideal is the per‑controller cards; a clean implementation is a separate render path for `< md` that traverses the same rows differently. Out of scope for Phase 3.
 
 ## Phase 4 — Polish, a11y, deploy
 
