@@ -302,6 +302,75 @@ describe('buildComparisonRows', () => {
     ])
   })
 
+  it('derives Bluetooth and Wired rows from the Connectivity spec', () => {
+    const a = controller({
+      id: 'a',
+      specs: {
+        Connectivity: { kind: 'text', value: 'Bluetooth, Wired' },
+      },
+    })
+    const b = controller({
+      id: 'b',
+      specs: {
+        Connectivity: { kind: 'text', value: 'Wired (USB-C)' },
+      },
+    })
+
+    const connectivity = buildComparisonRows([a, b]).find(
+      (s) => s.id === 'connectivity',
+    )!
+    const labels = connectivity.rows.map((r) => r.label)
+    // Detailed row first, then the two derived boolean rows.
+    expect(labels).toEqual(['Connectivity', 'Bluetooth', 'Wired'])
+
+    const bluetooth = connectivity.rows.find((r) => r.label === 'Bluetooth')!
+    expect(bluetooth.values).toEqual([
+      { kind: 'boolean', value: true },
+      { kind: 'boolean', value: false },
+    ])
+    // Both list connectivity, so b resolves to a real "no" (✗), not "—":
+    // present-but-differing → 'differ'.
+    expect(bluetooth.classification).toBe('differ')
+
+    const wired = connectivity.rows.find((r) => r.label === 'Wired')!
+    expect(wired.values).toEqual([
+      { kind: 'boolean', value: true },
+      { kind: 'boolean', value: true },
+    ])
+    expect(wired.classification).toBe('equal')
+  })
+
+  it('derives connectivity modes from a perPlatform Connectivity value', () => {
+    const a = controller({
+      id: 'a',
+      specs: {
+        Connectivity: {
+          kind: 'perPlatform',
+          value: { Windows: '2.4G, Wired', Android: 'Bluetooth' },
+        },
+      },
+    })
+    const connectivity = buildComparisonRows([a]).find(
+      (s) => s.id === 'connectivity',
+    )!
+    const bluetooth = connectivity.rows.find((r) => r.label === 'Bluetooth')!
+    const wired = connectivity.rows.find((r) => r.label === 'Wired')!
+    expect(bluetooth.values[0]).toEqual({ kind: 'boolean', value: true })
+    expect(wired.values[0]).toEqual({ kind: 'boolean', value: true })
+  })
+
+  it('omits derived connectivity rows when no controller lists Connectivity', () => {
+    const a = controller({
+      id: 'a',
+      specs: { Joysticks: { kind: 'text', value: 'TMR' } },
+    })
+    const labels = buildComparisonRows([a]).flatMap((s) =>
+      s.rows.map((r) => r.label),
+    )
+    expect(labels).not.toContain('Bluetooth')
+    expect(labels).not.toContain('Wired')
+  })
+
   it('routes labels missing from the catalog into the "other" section', () => {
     const a = controller({
       id: 'a',
