@@ -100,6 +100,54 @@ export function classifyRow(values: (SpecValue | null)[]): RowClassification {
   return allEqual ? 'equal' : 'differ'
 }
 
+/* ----------------------- derived connectivity rows --------------------- */
+
+const CONNECTIVITY_LABEL = 'Connectivity'
+
+/**
+ * Connection modes broken out of the freeform `Connectivity` spec into their
+ * own at-a-glance boolean rows. `displayOrder` slots them directly beneath the
+ * detailed Connectivity row (10) and above `2.4G Adapter` (20).
+ */
+const DERIVED_CONNECTIVITY: { label: string; displayOrder: number }[] = [
+  { label: 'Bluetooth', displayOrder: 12 },
+  { label: 'Wired', displayOrder: 14 },
+]
+
+const derivedConnectivityOrder = new Map(
+  DERIVED_CONNECTIVITY.map((d) => [d.label, d.displayOrder]),
+)
+
+/** Flatten any `Connectivity` SpecValue shape to searchable text. */
+function connectivityToText(value: SpecValue): string {
+  switch (value.kind) {
+    case 'text':
+      return value.value
+    case 'list':
+      return value.value.join(', ')
+    case 'perPlatform':
+      return Object.values(value.value).join(', ')
+    default:
+      return ''
+  }
+}
+
+/**
+ * Whether a controller supports a given connection mode, derived from its
+ * `Connectivity` spec. Returns `null` when the controller lists no
+ * connectivity at all (unknown) so the row shows the "—" missing marker
+ * rather than a misleading "no".
+ */
+export function resolveConnectivityMode(
+  controller: Controller,
+  mode: string,
+): SpecValue | null {
+  const conn = controller.specs?.[CONNECTIVITY_LABEL]
+  if (conn === undefined) return null
+  const haystack = connectivityToText(conn).toLowerCase()
+  return { kind: 'boolean', value: haystack.includes(mode.toLowerCase()) }
+}
+
 /* -------------------------- per-spec resolution ------------------------ */
 
 /**
@@ -171,6 +219,21 @@ export function buildComparisonRows(
     })
   }
 
+  // Break Bluetooth / Wired out of the freeform Connectivity spec into their
+  // own boolean rows so they can be compared at a glance. Derived at
+  // render-time (not stored on each controller) to keep `Connectivity` the
+  // single source of truth.
+  for (const { label } of DERIVED_CONNECTIVITY) {
+    const values = controllers.map((c) => resolveConnectivityMode(c, label))
+    if (values.every((v) => v === null)) continue
+    rows.push({
+      label,
+      section: 'connectivity',
+      values,
+      classification: classifyRow(values),
+    })
+  }
+
   // Group by section, sort rows within each section by displayOrder then
   // label.
   const bySection = new Map<SpecSection, ComparisonRow[]>()
@@ -182,8 +245,14 @@ export function buildComparisonRows(
 
   for (const list of bySection.values()) {
     list.sort((a, b) => {
-      const aOrder = specCatalog[a.label]?.displayOrder ?? 999
-      const bOrder = specCatalog[b.label]?.displayOrder ?? 999
+      const aOrder =
+        specCatalog[a.label]?.displayOrder ??
+        derivedConnectivityOrder.get(a.label) ??
+        999
+      const bOrder =
+        specCatalog[b.label]?.displayOrder ??
+        derivedConnectivityOrder.get(b.label) ??
+        999
       if (aOrder !== bOrder) return aOrder - bOrder
       return a.label.localeCompare(b.label)
     })

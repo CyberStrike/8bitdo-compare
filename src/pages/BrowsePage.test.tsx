@@ -127,15 +127,13 @@ describe('BrowsePage', () => {
     expect(screen.getByRole('heading', { name: 'Lite 2' })).toBeInTheDocument()
   })
 
-  it('shows a Specs pending badge for un-curated controllers and disables Compare', () => {
+  it('shows a disabled No Specs button (and no badge) for un-curated controllers', () => {
     renderBrowse([
       controller({ id: 'pending', name: 'Mystery', specsPending: true }),
     ])
-    // There are two "Specs pending" texts on the card — the badge (a span)
-    // and the button label. Assert each via its own role to disambiguate.
-    expect(screen.getAllByText(/specs pending/i).length).toBeGreaterThanOrEqual(
-      1,
-    )
-    expect(screen.getByRole('button', { name: 'Specs pending' })).toBeDisabled()
+    // The "Specs pending" badge was removed; the only signal is the disabled
+    // "No Specs" compare button.
+    expect(screen.queryByText(/specs pending/i)).toBeNull()
+    expect(screen.getByRole('button', { name: 'No Specs' })).toBeDisabled()
   })
 })

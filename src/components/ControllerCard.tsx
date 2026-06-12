@@ -24,7 +24,7 @@ export function ControllerCard({ controller }: Props) {
     buttonLabel = 'In comparison'
     buttonIcon = <Check className="size-4" aria-hidden="true" />
   } else if (controller.specsPending) {
-    buttonLabel = 'Specs pending'
+    buttonLabel = 'No Specs'
     buttonIcon = <ShieldAlert className="size-4" aria-hidden="true" />
   } else if (isFull) {
     buttonLabel = 'Cap reached'
@@ -82,11 +82,6 @@ export function ControllerCard({ controller }: Props) {
           {!controller.available && (
             <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
               Sold out
-            </span>
-          )}
-          {controller.specsPending && (
-            <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 dark:bg-amber-950 dark:text-amber-200">
-              Specs pending
             </span>
           )}
         </div>
