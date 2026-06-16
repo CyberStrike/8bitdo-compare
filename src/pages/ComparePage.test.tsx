@@ -125,6 +125,25 @@ describe('ComparePage', () => {
     expect(rowVariant('Price')).toBe('differ')
   })
 
+  it('adds screen-reader text for differing and partial rows', () => {
+    renderCompare([
+      controller({
+        id: 'pro-3',
+        basePriceUSD: 69.99,
+        specs: specs({
+          'Battery Capacity': { kind: 'number', value: 1000, unit: 'mAh' },
+        }),
+      }),
+      controller({ id: 'lite-2', basePriceUSD: 24.99, specs: {} }),
+    ])
+    // Price differs across the two controllers.
+    expect(screen.getAllByText(/\(values differ\)/i).length).toBeGreaterThan(0)
+    // Battery Capacity present on only one → partial.
+    expect(
+      screen.getByText(/\(only some controllers have this\)/i),
+    ).toBeInTheDocument()
+  })
+
   it('classifies the price row as equal when prices match', () => {
     renderCompare([
       controller({ id: 'a', basePriceUSD: 49.99 }),

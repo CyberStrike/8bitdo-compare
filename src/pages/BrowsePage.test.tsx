@@ -30,14 +30,17 @@ function controller(overrides: Partial<Controller>): Controller {
   }
 }
 
-function renderBrowse(controllers: Controller[]) {
+function renderBrowse(
+  controllers: Controller[],
+  status: 'loading' | 'ready' | 'error' = 'ready',
+) {
   const refresh = vi.fn().mockResolvedValue(undefined)
   return render(
     <MemoryRouter>
       <CatalogContext.Provider
         value={{
           controllers,
-          status: 'ready',
+          status,
           fetchedAt: 1000,
           fromCache: false,
           error: null,
@@ -56,6 +59,13 @@ function renderBrowse(controllers: Controller[]) {
 describe('BrowsePage', () => {
   beforeEach(() => {
     window.localStorage.clear()
+  })
+
+  it('announces a busy loading state with skeletons while the catalog loads', () => {
+    renderBrowse([], 'loading')
+    expect(screen.getByText(/loading controllers/i)).toBeInTheDocument()
+    const region = screen.getByRole('region', { name: /controllers/i })
+    expect(region).toHaveAttribute('aria-busy', 'true')
   })
 
   it('renders one card per controller', () => {
