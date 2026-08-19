@@ -1,14 +1,13 @@
 {
   "_meta": {
-    "version": "0.1.0",
-    "generatedAt": "2026-06-10",
+    "version": "0.2.0",
+    "generatedAt": "2026-06-16",
     "scope": "Controllers in the in-scope set for Switch/PC/Mac use cases (see design §12.1).",
     "specSource": "Each entry curated from the controller's marketing page on https://www.8bitdo.com/<slug>/, primarily the comparison tables embedded on the Pro 3, Ultimate 2 Wireless, Ultimate 2 Bluetooth, Ultimate 2C Wireless, Ultimate 2C Wired, SN30 Pro, Lite 2, and Pro 2 product pages.",
     "specValueShape": "{ kind: 'text' | 'boolean' | 'number' | 'list' | 'perPlatform', value: ..., unit?: string }",
     "missingPolicy": "If a spec has booleanByDefault: true in specCatalog.ts and is OMITTED here, the comparison view treats it as 'this controller does not have this feature.' Otherwise omission means 'not listed by 8BitDo for this model.'",
     "curatorTodos": "Several rows on 8BitDo's comparison tables render as empty cells in the markdown fetch (checkmark icons), so a small number of boolean specs are conservatively omitted rather than guessed. Worth a second pass against the rendered marketing pages before shipping; see per-entry _curatorNotes."
   },
-
   "8bitdo-pro-3": {
     "shopifyHandle": "8bitdo-pro-3",
     "officialSlug": "pro3",
@@ -45,26 +44,63 @@
           "Android": "Bluetooth, Wired"
         }
       },
-      "2.4G Adapter": { "kind": "text", "value": "USB-C" },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB-C"
+      },
       "Polling Rate": {
         "kind": "text",
         "value": "D-input: BT 60-100Hz, Wired 100-200Hz; S-input: BT 60-200Hz, Wired/2.4G 125Hz; X-input: Wired/2.4G 250Hz"
       },
-      "Joysticks": { "kind": "text", "value": "TMR (12-bit ADC)" },
-      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
+      "Joysticks": {
+        "kind": "text",
+        "value": "TMR (12-bit ADC)"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
       "Triggers": {
         "kind": "text",
         "value": "Dual-mode: Linear Hall Effect / Non-linear micro-switch"
       },
-      "Bumpers": { "kind": "text", "value": "Silicone" },
-      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true },
-      "Pro Back Paddle Buttons": { "kind": "boolean", "value": true },
-      "6-axis Motion Control": { "kind": "boolean", "value": true },
-      "Vibration": { "kind": "boolean", "value": true },
-      "Turbo": { "kind": "boolean", "value": true },
-      "Shake to wake": { "kind": "text", "value": "Switch 1 only" },
-      "Charging Dock": { "kind": "boolean", "value": true },
-      "Battery Capacity": { "kind": "number", "value": 1000, "unit": "mAh" },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Silicone"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Shake to wake": {
+        "kind": "text",
+        "value": "Switch 1 only"
+      },
+      "Charging Dock": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 1000,
+        "unit": "mAh"
+      },
       "Ultimate Software Support": {
         "kind": "text",
         "value": "Ultimate Software V2"
@@ -72,7 +108,6 @@
     },
     "_curatorNotes": "3.5mm Audio Jack and RGB Fire Ring rows are present in the on-page comparison table but rendered as empty cells; not mentioned in feature copy either way. Conservatively omitted (= 'no' in the comparison view per booleanByDefault)."
   },
-
   "8bitdo-pro-2-bluetooth-controller": {
     "shopifyHandle": "8bitdo-pro-2-bluetooth-controller",
     "officialSlug": "pro2",
@@ -92,7 +127,10 @@
           "Transparent Black"
         ]
       },
-      "Layout": { "kind": "text", "value": "Switch layout" },
+      "Layout": {
+        "kind": "text",
+        "value": "Switch layout"
+      },
       "Compatibility": {
         "kind": "list",
         "value": [
@@ -105,19 +143,47 @@
           "Raspberry Pi"
         ]
       },
-      "Connectivity": { "kind": "text", "value": "Bluetooth, Wired" },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Bluetooth, Wired"
+      },
       "Polling Rate": {
         "kind": "text",
         "value": "D-input: BT 60Hz, Wired 100Hz; S-input: BT 60-200Hz, Wired 100Hz; X-input: Wired 100Hz"
       },
-      "Joysticks": { "kind": "text", "value": "Hall Effect" },
-      "Triggers": { "kind": "text", "value": "Linear" },
-      "Bumpers": { "kind": "text", "value": "Silicone" },
-      "Pro Back Paddle Buttons": { "kind": "boolean", "value": true },
-      "6-axis Motion Control": { "kind": "boolean", "value": true },
-      "Vibration": { "kind": "boolean", "value": true },
-      "Turbo": { "kind": "boolean", "value": true },
-      "Battery Capacity": { "kind": "number", "value": 1000, "unit": "mAh" },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Linear"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Silicone"
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 1000,
+        "unit": "mAh"
+      },
       "Ultimate Software Support": {
         "kind": "text",
         "value": "Ultimate Software (v1)"
@@ -125,7 +191,6 @@
     },
     "_curatorNotes": "Per Pro 3 comparison table: Pro 2 does NOT have Fast Bumpers (L4/R4), Charging Dock, or RGB Fire Ring (those rows are Pro-3-only). Switch 2 support added via firmware update. Switch compatibility does not support HD rumble or amiibo scanning."
   },
-
   "8bitdo-ultimate-2": {
     "shopifyHandle": "8bitdo-ultimate-2",
     "officialSlug": "ultimate-2-wireless-controller",
@@ -137,7 +202,10 @@
         "kind": "list",
         "value": ["White", "Black", "Purple", "Green (eShop exclusive)"]
       },
-      "Layout": { "kind": "text", "value": "Xbox layout" },
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout"
+      },
       "Compatibility": {
         "kind": "list",
         "value": ["Windows", "Android", "Apple", "SteamOS"]
@@ -149,22 +217,58 @@
           "Android": "Bluetooth"
         }
       },
-      "2.4G Adapter": { "kind": "text", "value": "USB-C" },
-      "Polling Rate": { "kind": "text", "value": "2.4G / Wired 1000Hz" },
-      "Joysticks": { "kind": "text", "value": "TMR (12-bit ADC)" },
-      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB-C"
+      },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "2.4G / Wired 1000Hz"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "TMR (12-bit ADC)"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
       "Triggers": {
         "kind": "text",
         "value": "Dual-mode: Linear Hall Effect / Non-linear tactile"
       },
-      "Bumpers": { "kind": "text", "value": "Tactile" },
-      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true },
-      "Pro Back Paddle Buttons": { "kind": "boolean", "value": true },
-      "6-axis Motion Control": { "kind": "boolean", "value": true },
-      "Vibration": { "kind": "boolean", "value": true },
-      "Turbo": { "kind": "boolean", "value": true },
-      "RGB Fire Ring": { "kind": "boolean", "value": true },
-      "Charging Dock": { "kind": "boolean", "value": true },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "RGB Fire Ring": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Charging Dock": {
+        "kind": "boolean",
+        "value": true
+      },
       "Ultimate Software Support": {
         "kind": "text",
         "value": "Ultimate Software V2"
@@ -172,7 +276,6 @@
     },
     "_curatorNotes": "Major naming hazard: 'Ultimate 2 Wireless' has NO Switch support, while 'Ultimate 2 Bluetooth' (a separate product) DOES. The comparison view should surface this asymmetry clearly in the Compatibility row. Battery capacity not listed on the page comparison table for this product."
   },
-
   "8bitdo-ultimate-2-bluetooth-controller": {
     "shopifyHandle": "8bitdo-ultimate-2-bluetooth-controller",
     "officialSlug": "ultimate-2-bluetooth-controller",
@@ -184,7 +287,10 @@
         "kind": "list",
         "value": ["White", "Black", "Yellow (eShop exclusive)"]
       },
-      "Layout": { "kind": "text", "value": "Switch layout" },
+      "Layout": {
+        "kind": "text",
+        "value": "Switch layout"
+      },
       "Compatibility": {
         "kind": "list",
         "value": ["Switch 1", "Switch 2", "Windows"]
@@ -196,21 +302,54 @@
           "Windows": "2.4G, Wired"
         }
       },
-      "2.4G Adapter": { "kind": "text", "value": "USB-C" },
-      "Joysticks": { "kind": "text", "value": "TMR (12-bit ADC)" },
-      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB-C"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "TMR (12-bit ADC)"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
       "Triggers": {
         "kind": "text",
         "value": "Dual-mode: Linear Hall Effect / Non-linear tactile"
       },
-      "Bumpers": { "kind": "text", "value": "Tactile" },
-      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true },
-      "Pro Back Paddle Buttons": { "kind": "boolean", "value": true },
-      "6-axis Motion Control": { "kind": "boolean", "value": true },
-      "Vibration": { "kind": "boolean", "value": true },
-      "Turbo": { "kind": "boolean", "value": true },
-      "RGB Fire Ring": { "kind": "boolean", "value": true },
-      "Charging Dock": { "kind": "boolean", "value": true },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "RGB Fire Ring": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Charging Dock": {
+        "kind": "boolean",
+        "value": true
+      },
       "Ultimate Software Support": {
         "kind": "text",
         "value": "Ultimate Software V2"
@@ -218,7 +357,6 @@
     },
     "_curatorNotes": "Major naming hazard (see Ultimate 2 Wireless entry). Polling Rate row was present on the comparison table but rendered as empty — likely 2.4G/Wired 1000Hz to match the rest of the line. Confirm before shipping."
   },
-
   "8bitdo-ultimate-2c-wireless-controller": {
     "shopifyHandle": "8bitdo-ultimate-2c-wireless-controller",
     "officialSlug": "ultimate-2c-wireless-controller",
@@ -238,8 +376,14 @@
           "Brownie (SE)"
         ]
       },
-      "Layout": { "kind": "text", "value": "Xbox layout" },
-      "Compatibility": { "kind": "list", "value": ["Windows", "Android"] },
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Windows", "Android"]
+      },
       "Connectivity": {
         "kind": "perPlatform",
         "value": {
@@ -247,17 +391,37 @@
           "Android": "Bluetooth"
         }
       },
-      "2.4G Adapter": { "kind": "text", "value": "USB-A" },
-      "Polling Rate": { "kind": "text", "value": "2.4G / Wired 1000Hz" },
-      "Joysticks": { "kind": "text", "value": "Hall Effect" },
-      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
-      "Triggers": { "kind": "text", "value": "Linear (Hall Effect)" },
-      "Bumpers": { "kind": "text", "value": "Tactile" },
-      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true }
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB-A"
+      },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "2.4G / Wired 1000Hz"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Linear (Hall Effect)"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      }
     },
     "_curatorNotes": "Per the 2C-wireless-vs-C-wireless comparison table: Pro Back Paddles, 3.5mm Audio Jack, 6-axis Motion, Vibration, Turbo, RGB Fire Ring, Charging Dock, Ultimate Software all rendered as empty in markdown. Treated as 'not present' (booleanByDefault). The page's feature copy confirms Hall Effect sticks+triggers, refined bumpers, custom mapping, mode switch — no mention of vibration/motion/RGB/dock."
   },
-
   "8bitdo-ultimate-2c-wired-controller": {
     "shopifyHandle": "8bitdo-ultimate-2c-wired-controller",
     "officialSlug": "ultimate-2c-wired-controller",
@@ -269,19 +433,45 @@
         "kind": "list",
         "value": ["Purple", "Green", "Mint", "Peach"]
       },
-      "Layout": { "kind": "text", "value": "Xbox layout" },
-      "Compatibility": { "kind": "list", "value": ["Windows", "Android"] },
-      "Connectivity": { "kind": "text", "value": "Wired (USB-C)" },
-      "Polling Rate": { "kind": "text", "value": "1000Hz" },
-      "Joysticks": { "kind": "text", "value": "Hall Effect" },
-      "Wear-resistant Joystick Rings": { "kind": "boolean", "value": true },
-      "Triggers": { "kind": "text", "value": "Linear (Hall Effect)" },
-      "Bumpers": { "kind": "text", "value": "Tactile" },
-      "Fast Bumpers (L4/R4)": { "kind": "boolean", "value": true }
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Windows", "Android"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Wired (USB-C)"
+      },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "1000Hz"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Linear (Hall Effect)"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      }
     },
     "_curatorNotes": "Same pattern as 2C Wireless — all premium features (back paddles, motion, vibration, turbo, RGB, audio jack) are absent from the comparison table and feature copy; treated as not present. No battery section since it's wired-only."
   },
-
   "8bitdo-sn30-pro-bluetooth-gamepad": {
     "shopifyHandle": "8bitdo-sn30-pro-bluetooth-gamepad",
     "officialSlug": "sn30-pro-g-classic-or-sn30-pro-sn",
@@ -315,15 +505,29 @@
           "Raspberry Pi"
         ]
       },
-      "Connectivity": { "kind": "text", "value": "Bluetooth, Wired" },
-      "Joysticks": { "kind": "text", "value": "Hall Effect" },
-      "Triggers": { "kind": "text", "value": "Linear" },
-      "6-axis Motion Control": { "kind": "boolean", "value": true },
-      "Vibration": { "kind": "boolean", "value": true }
+      "Connectivity": {
+        "kind": "text",
+        "value": "Bluetooth, Wired"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Linear"
+      },
+      "6-axis Motion Control": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      }
     },
     "_curatorNotes": "Older product, no embedded comparison table on its marketing page — specs above come from the page's hero/feature copy ('Hall Effect joysticks', 'rumble vibration', 'motion controls', 'wireless bluetooth', 'rechargeable battery', 'USB-C connector'). Battery capacity, polling rate, Ultimate Software support, and back paddles all unclear from the page; left out rather than guessed. Switch 2 support added via firmware update. Switch compatibility doesn't support HD rumble or amiibo."
   },
-
   "8bitdo-lite-2-bluetooth-gamepad-for-switch-android-and-raspberry-pi": {
     "shopifyHandle": "8bitdo-lite-2-bluetooth-gamepad-for-switch-android-and-raspberry-pi",
     "officialSlug": "lite2",
@@ -331,7 +535,10 @@
     "family": "Lite",
     "tagline": "Ultra-portable, fully-featured small-form-factor controller. Made for 2D games and travel.",
     "specs": {
-      "Color/Edition": { "kind": "list", "value": ["Turquoise", "Pink"] },
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Turquoise", "Pink"]
+      },
       "Layout": {
         "kind": "text",
         "value": "Switch Lite-inspired (compact, no full sticks)"
@@ -340,8 +547,14 @@
         "kind": "list",
         "value": ["Switch 1", "Switch 2", "Android", "Apple", "Raspberry Pi"]
       },
-      "Connectivity": { "kind": "text", "value": "Bluetooth, Wired (USB-C)" },
-      "Joysticks": { "kind": "text", "value": "Standard mini joysticks" },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Bluetooth, Wired (USB-C)"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Standard mini joysticks"
+      },
       "6-axis Motion Control": {
         "kind": "text",
         "value": "Yes, but only in S (Switch) mode"
@@ -350,14 +563,1269 @@
         "kind": "text",
         "value": "Yes, but only in S (Switch) mode (no HD rumble on Switch)"
       },
-      "Turbo": { "kind": "text", "value": "Yes, in D-input mode" },
+      "Turbo": {
+        "kind": "text",
+        "value": "Yes, in D-input mode"
+      },
       "Mode Switch": {
         "kind": "text",
         "value": "S (Switch) / D (Android/Apple/Pi)"
       },
-      "Battery Capacity": { "kind": "number", "value": 480, "unit": "mAh" },
-      "Battery Life": { "kind": "text", "value": "Up to 20 hours" }
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 480,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "Up to 20 hours"
+      }
     },
     "_curatorNotes": "Does NOT officially support Windows/PC directly per the 8bitdo.com page (Switch, Android, Apple, Raspberry Pi only). Some users report D-input working with PC via Bluetooth but it's unsupported. Ultimate Software is not in its supported-devices list. For Switch+PC+Mac users, this controller MISSES PC support."
+  },
+  "8bitdo-64-bluetooth-controller-funtastic": {
+    "shopifyHandle": "8bitdo-64-bluetooth-controller-funtastic",
+    "officialSlug": "8bitdo-64-bluetooth-controller-funtastic",
+    "name": "8BitDo 64 (Funtastic)",
+    "family": "64",
+    "tagline": "N64-inspired Bluetooth controller for the Analogue 3D and Switch, with Hall Effect sticks and a metal joystick ring.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Funtastic Limited Editions"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "N64-style layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Analogue 3D", "Switch 1", "Switch 2", "Windows", "Android"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Bluetooth 5.0, Wired (USB)"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "text",
+        "value": "Analogue, or Switch 1/2 (64 Online) only"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "140.8 × 104 × 60.5 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 226,
+        "unit": "g"
+      }
+    }
+  },
+  "8bitdo-64-controller-prototype-limited-editions": {
+    "shopifyHandle": "8bitdo-64-controller-prototype-limited-editions",
+    "officialSlug": "8bitdo-64-controller-prototype-limited-editions",
+    "name": "8BitDo 64 (Prototype)",
+    "family": "64",
+    "tagline": "Prototype-themed limited editions of the 64 Bluetooth controller; same hardware, transparent colourways.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Prototype Limited Editions"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "N64-style layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Analogue 3D", "Switch 1", "Switch 2", "Windows", "Android"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Bluetooth 5.0, Wired (USB)"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "text",
+        "value": "Analogue, or Switch 1/2 (64 Online) only"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "140.8 × 104 × 60.5 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 226,
+        "unit": "g"
+      }
+    }
+  },
+  "8bitdo-64-2-4g-wireless-controller": {
+    "shopifyHandle": "8bitdo-64-2-4g-wireless-controller",
+    "officialSlug": "8bitdo-64-2-4g-wireless-controller",
+    "name": "8BitDo 64 2.4G",
+    "family": "64",
+    "tagline": "2.4G wireless N64 controller for the original Nintendo 64 console and Analogue 3D, with Hall Effect stick and memory function.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Classic Grey"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "N64-style layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["N64", "Analogue 3D", "Windows"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "N64 / Analogue 3D": "2.4G",
+          "Windows": "Wired"
+        }
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "text",
+        "value": "Analogue 3D only (requires game support)"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "140.8 × 104 × 60.5 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 226,
+        "unit": "g"
+      }
+    }
+  },
+  "8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight": {
+    "shopifyHandle": "8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight",
+    "officialSlug": "8bitdo-ultimate-2-wireless-controller-honkai-star-rail-evernight",
+    "name": "Ultimate 2 Wireless (Honkai: Star Rail – Evernight)",
+    "family": "Ultimate",
+    "tagline": "Officially-licensed Honkai: Star Rail edition of the Ultimate 2 Wireless. PC/Mac/SteamOS/Android — no Switch support.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Honkai: Star Rail – Evernight"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Windows", "SteamOS", "Android", "Apple"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Windows": "2.4G, Wired",
+          "SteamOS": "Bluetooth",
+          "Apple": "Bluetooth",
+          "Android": "Bluetooth"
+        }
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB-C"
+      },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "2.4G / Wired 1000Hz"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "TMR"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Dual-mode: linear / tactile"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "RGB Fire Ring": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Charging Dock": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software V2"
+      }
+    }
+  },
+  "8bitdo-ultimate-2-wuchang": {
+    "shopifyHandle": "8bitdo-ultimate-2-wuchang",
+    "officialSlug": "8bitdo-ultimate-2-wuchang",
+    "name": "Ultimate 2 Wireless (WUCHANG: Fallen Feathers)",
+    "family": "Ultimate",
+    "tagline": "WUCHANG: Fallen Feathers edition of the Ultimate 2 Wireless (PC/Android).",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["WUCHANG: Fallen Feathers"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Windows", "Android"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Windows": "2.4G, Wired",
+          "Android": "Bluetooth"
+        }
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB-C"
+      },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "2.4G / Wired 1000Hz"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "TMR"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Dual-mode: linear / tactile"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "boolean",
+        "value": true
+      },
+      "RGB Fire Ring": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software V2"
+      }
+    }
+  },
+  "ultimate-2-bluetooth-nes-40th": {
+    "shopifyHandle": "ultimate-2-bluetooth-nes-40th",
+    "officialSlug": "ultimate-2-bluetooth-nes-40th",
+    "name": "Ultimate 2 Bluetooth (NES 40th)",
+    "family": "Ultimate",
+    "tagline": "NES 40th Anniversary edition of the Ultimate 2 Bluetooth. Switch + PC, plus original NES via the bundled Retro Receiver.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["NES 40th Limited Edition"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "Switch layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Switch 1", "Switch 2", "Windows", "NES"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Switch": "Bluetooth, 2.4G, Wired",
+          "Windows": "2.4G, Wired",
+          "NES": "2.4G (via NES Retro Receiver)"
+        }
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB-C"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "TMR"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Dual-mode: linear / tactile"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "text",
+        "value": "Switch only"
+      },
+      "RGB Fire Ring": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software V2"
+      }
+    }
+  },
+  "ultimate-2c-black-myth-wukong": {
+    "shopifyHandle": "ultimate-2c-black-myth-wukong",
+    "officialSlug": "ultimate-2c-black-myth-wukong",
+    "name": "Ultimate 2C (Black Myth: Wukong)",
+    "family": "Ultimate 2C",
+    "tagline": "Black Myth: Wukong edition of the Ultimate 2C. Budget Hall Effect controller for PC and Android.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Black Myth: Wukong"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Windows", "Android"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Windows": "2.4G, Wired",
+          "Android": "Bluetooth"
+        }
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB-A"
+      },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "2.4G / Wired 1000Hz"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Wear-resistant Joystick Rings": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Linear (Hall Effect)"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      }
+    }
+  },
+  "8bitdo-sn30-wireless-gamepad-for-original-snes-sfc": {
+    "shopifyHandle": "8bitdo-sn30-wireless-gamepad-for-original-snes-sfc",
+    "officialSlug": "8bitdo-sn30-wireless-gamepad-for-original-snes-sfc",
+    "name": "8BitDo SN30 2.4G",
+    "family": "SN30",
+    "tagline": "2.4G wireless SNES/SFC-style pad for the original Super NES, Super Famicom and Analogue Super Nt (USB on Switch/PC).",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "SNES retro layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": [
+          "Super NES",
+          "Super Famicom",
+          "Analogue Super Nt",
+          "Switch 1",
+          "Windows"
+        ]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "2.4G (SNES / SFC / Super Nt); Wired USB (Switch / Windows)"
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 180,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "18–20 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "144 × 63.5 × 26.2 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 98,
+        "unit": "g"
+      }
+    }
+  },
+  "n30-2-4g": {
+    "shopifyHandle": "n30-2-4g",
+    "officialSlug": "n30-2-4g",
+    "name": "8BitDo N30 2.4G",
+    "family": "N30",
+    "tagline": "2.4G wireless NES-style pad for the original NES, Famicom (HVC-101) and Analogue Nt / Nt Mini.",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "NES retro layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["NES", "Famicom", "Analogue Nt", "Analogue Nt Mini"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "2.4G (original NES)"
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 180,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "18–20 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "123.8 × 53.5 × 19.7 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 72.5,
+        "unit": "g"
+      }
+    }
+  },
+  "8bitdo-ultimate-mini-wired-controller-for-xbox": {
+    "shopifyHandle": "8bitdo-ultimate-mini-wired-controller-for-xbox",
+    "officialSlug": "8bitdo-ultimate-mini-wired-controller-for-xbox",
+    "name": "Ultimate Mini Wired Controller for Xbox",
+    "family": "Ultimate",
+    "tagline": "Compact officially-licensed Xbox wired controller with Hall Effect sticks/triggers, impulse triggers and an RGB Fire Ring.",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Xbox Series X|S", "Xbox One", "Windows"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Wired (USB)"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "3.5mm Audio Jack": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "RGB Fire Ring": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "135.2 × 95.4 × 58.6 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 189.6,
+        "unit": "g"
+      }
+    }
+  },
+  "8bitdo-arcade-controller": {
+    "shopifyHandle": "8bitdo-arcade-controller",
+    "officialSlug": "8bitdo-arcade-controller",
+    "name": "8BitDo Arcade Controller",
+    "family": "Arcade",
+    "tagline": "Leverless all-button arcade controller with Kailh Wizard low-profile switches, hot-swappable PCB and SOCD cleaning.",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "All-button arcade (leverless)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Windows", "Switch 1"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Windows": "2.4G, Wired",
+          "Switch": "Bluetooth, Wired"
+        }
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB"
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 1000,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "Up to 20 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "301 × 201 × 22 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 1097,
+        "unit": "g"
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software V2"
+      }
+    }
+  },
+  "8bitdo-arcade-controller-transparent-purple": {
+    "shopifyHandle": "8bitdo-arcade-controller-transparent-purple",
+    "officialSlug": "8bitdo-arcade-controller-transparent-purple",
+    "name": "8BitDo Arcade Controller (Transparent Purple)",
+    "family": "Arcade",
+    "tagline": "Signature Edition arcade controller with Kailh Purple Glede linear switches (Vxbao & Zhen collaboration).",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Transparent Purple Signature Edition"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "All-button arcade (leverless)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Windows", "Switch 1"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Windows": "2.4G, Wired",
+          "Switch": "Bluetooth, Wired"
+        }
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB"
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 1000,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "Up to 20 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "301 × 201 × 22 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 1097,
+        "unit": "g"
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software"
+      }
+    }
+  },
+  "8bitdo-arcade-controller-for-xbox": {
+    "shopifyHandle": "8bitdo-arcade-controller-for-xbox",
+    "officialSlug": "8bitdo-arcade-controller-for-xbox",
+    "name": "8BitDo Arcade Controller for Xbox",
+    "family": "Arcade",
+    "tagline": "Officially-licensed Xbox leverless arcade controller with RGB lighting, Kailh Wizard switches and a 3.5mm jack.",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "All-button arcade (leverless)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Xbox Series X|S", "Xbox One", "Windows"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "2.4G, Wired"
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB"
+      },
+      "3.5mm Audio Jack": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 3000,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "20h (RGB on) / 40h (RGB off)"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "301 × 201 × 22 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 1123,
+        "unit": "g"
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software X"
+      }
+    }
+  },
+  "8bitdo-ultimate-mobile-gaming-controller": {
+    "shopifyHandle": "8bitdo-ultimate-mobile-gaming-controller",
+    "officialSlug": "8bitdo-ultimate-mobile-gaming-controller",
+    "name": "Ultimate Mobile Gaming Controller",
+    "family": "Ultimate",
+    "tagline": "Telescopic Android phone controller with Hall Effect sticks/triggers, back paddles and Ultimate Software support.",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "Telescopic mobile (fits 100–170 mm phones)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Android"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Bluetooth"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 350,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "Up to 15 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "198.0 × 103.0 × 53.5 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 236,
+        "unit": "g"
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software"
+      }
+    }
+  },
+  "ultimate-mobile-gaming-controller-xbox-edition": {
+    "shopifyHandle": "ultimate-mobile-gaming-controller-xbox-edition",
+    "officialSlug": "ultimate-mobile-gaming-controller-xbox-edition",
+    "name": "Ultimate Mobile Gaming Controller (Xbox Edition)",
+    "family": "Ultimate",
+    "tagline": "Telescopic mobile controller for iOS/Android with Xbox Cloud Gaming support and Hall Effect sticks/triggers.",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "Telescopic mobile (fits 100–170 mm phones)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Apple", "Android"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Bluetooth"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Bumpers": {
+        "kind": "text",
+        "value": "Tactile"
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 300,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "Up to 13 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "198.0 × 103.0 × 53.5 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 236,
+        "unit": "g"
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software V2"
+      }
+    }
+  },
+  "8bitdo-m30-wired-controller-for-xbox": {
+    "shopifyHandle": "8bitdo-m30-wired-controller-for-xbox",
+    "officialSlug": "8bitdo-m30-wired-controller-for-xbox",
+    "name": "M30 Wired Controller for Xbox",
+    "family": "M30",
+    "tagline": "Sega Genesis / Mega Drive-style 6-button fighting pad, officially licensed for Xbox, with on-the-fly profiles.",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "Sega Genesis / Mega Drive 6-button"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Xbox Series X|S", "Xbox One", "Windows"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Wired (USB)"
+      },
+      "3.5mm Audio Jack": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "147.2 × 74.5 × 31.2 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 112.5,
+        "unit": "g"
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software X"
+      },
+      "Mode Switch": {
+        "kind": "text",
+        "value": "Button-layout switch; left joystick / D-pad switch"
+      }
+    }
+  },
+  "8bitdo-ultimate-3e-controller-for-xbox": {
+    "shopifyHandle": "8bitdo-ultimate-3e-controller-for-xbox",
+    "officialSlug": "8bitdo-ultimate-3e-controller-for-xbox",
+    "name": "Ultimate 3E Controller for Xbox",
+    "family": "Ultimate",
+    "tagline": "Officially-licensed Xbox flagship with TMR sticks, impulse triggers, swappable magnetic faceplate and joystick modules.",
+    "specs": {
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout (swappable D-pad / ABXY / joystick modules)"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Xbox Series X|S", "Xbox One", "Windows", "Android", "Apple"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Xbox": "2.4G, Wired",
+          "Windows": "2.4G, Wired",
+          "Android": "Bluetooth",
+          "Apple": "Bluetooth"
+        }
+      },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "Up to 1000Hz (PC only)"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "TMR"
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Hall-effect impulse triggers (two trigger stops)"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "text",
+        "value": "PC only (not on Xbox)"
+      },
+      "RGB Fire Ring": {
+        "kind": "boolean",
+        "value": true
+      },
+      "3.5mm Audio Jack": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Charging Dock": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 1400,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "Up to 18 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "152.5 × 104.0 × 62.0 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 285,
+        "unit": "g"
+      }
+    }
+  },
+  "ultimate-3-controller-for-xbox-lavender-dusk": {
+    "shopifyHandle": "ultimate-3-controller-for-xbox-lavender-dusk",
+    "officialSlug": "ultimate-3-controller-for-xbox-lavender-dusk",
+    "name": "Ultimate 3 Controller for Xbox (Lavender Dusk)",
+    "family": "Ultimate",
+    "tagline": "Officially-licensed Xbox controller with TMR sticks, Force Ring adjustable joystick tension and impulse triggers.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Lavender Dusk"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "Xbox layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Xbox Series X|S", "Xbox One", "Windows", "Android", "Apple"]
+      },
+      "Connectivity": {
+        "kind": "perPlatform",
+        "value": {
+          "Xbox": "2.4G, Wired",
+          "Windows": "2.4G, Wired",
+          "Android": "Bluetooth",
+          "Apple": "Bluetooth"
+        }
+      },
+      "Polling Rate": {
+        "kind": "text",
+        "value": "Up to 1000Hz (PC only)"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "TMR"
+      },
+      "Triggers": {
+        "kind": "text",
+        "value": "Hall-effect impulse triggers (two trigger stops)"
+      },
+      "Fast Bumpers (L4/R4)": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "text",
+        "value": "PC only (mappable to LS / RS)"
+      },
+      "3.5mm Audio Jack": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Charging Dock": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 1000,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "Up to 20 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "151 × 84 × 100.5 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 466,
+        "unit": "g"
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software X"
+      }
+    }
+  },
+  "8bitdo-lite-se-2-4g-wireless-controller-for-xbox": {
+    "shopifyHandle": "8bitdo-lite-se-2-4g-wireless-controller-for-xbox",
+    "officialSlug": "8bitdo-lite-se-2-4g-wireless-controller-for-xbox",
+    "name": "Lite SE 2.4G Wireless Controller for Xbox",
+    "family": "Lite",
+    "tagline": "Accessibility-focused Xbox controller with low-resistance buttons, a unified face-button layout and bundled Super Buttons.",
+    "specs": {
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Xbox Series X|S", "Xbox One", "Windows"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "2.4G, Wired"
+      },
+      "2.4G Adapter": {
+        "kind": "text",
+        "value": "USB"
+      },
+      "3.5mm Audio Jack": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 1000,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "Up to 20 hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "145 × 78 × 30 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 160,
+        "unit": "g"
+      }
+    }
+  },
+  "8bitdo-pro-2-bluetooth-special-edition": {
+    "shopifyHandle": "8bitdo-pro-2-bluetooth-special-edition",
+    "officialSlug": "8bitdo-pro-2-bluetooth-special-edition",
+    "name": "Pro 2 (Special Edition)",
+    "family": "Pro",
+    "tagline": "Special-edition colourways of the Hall Effect Pro 2, with broad platform support and on-the-fly profiles.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Special Edition"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "Switch layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": [
+          "Switch 1",
+          "Switch 2",
+          "SteamOS",
+          "Windows",
+          "Android",
+          "Raspberry Pi",
+          "Apple"
+        ]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Bluetooth, Wired"
+      },
+      "Joysticks": {
+        "kind": "text",
+        "value": "Hall Effect"
+      },
+      "Pro Back Paddle Buttons": {
+        "kind": "boolean",
+        "value": true
+      },
+      "6-axis Motion Control": {
+        "kind": "text",
+        "value": "Switch only"
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Battery Capacity": {
+        "kind": "number",
+        "value": 1000,
+        "unit": "mAh"
+      },
+      "Battery Life": {
+        "kind": "text",
+        "value": "20+ hours"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "153.4 × 100.6 × 64.5 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 228,
+        "unit": "g"
+      },
+      "Ultimate Software Support": {
+        "kind": "text",
+        "value": "Ultimate Software (PC & mobile)"
+      },
+      "Mode Switch": {
+        "kind": "text",
+        "value": "Switch / X-input / D-input"
+      }
+    }
+  },
+  "8bitdo-sn30-pro-limited-edition": {
+    "shopifyHandle": "8bitdo-sn30-pro-limited-edition",
+    "officialSlug": "8bitdo-sn30-pro-limited-edition",
+    "name": "SN30 Pro (Space Gray Limited Edition)",
+    "family": "SN30",
+    "tagline": "Zinc-alloy wired SN30 Pro limited edition for Switch and Windows.",
+    "specs": {
+      "Color/Edition": {
+        "kind": "list",
+        "value": ["Space Gray (zinc-alloy)"]
+      },
+      "Layout": {
+        "kind": "text",
+        "value": "SNES retro layout"
+      },
+      "Compatibility": {
+        "kind": "list",
+        "value": ["Switch 1", "Switch 2", "Windows"]
+      },
+      "Connectivity": {
+        "kind": "text",
+        "value": "Wired (USB)"
+      },
+      "Vibration": {
+        "kind": "boolean",
+        "value": true
+      },
+      "Turbo": {
+        "kind": "text",
+        "value": "Windows only"
+      },
+      "Dimensions": {
+        "kind": "text",
+        "value": "144 × 63.5 × 32.5 mm"
+      },
+      "Weight": {
+        "kind": "number",
+        "value": 381,
+        "unit": "g"
+      }
+    }
   }
 }
