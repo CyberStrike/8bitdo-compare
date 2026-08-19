@@ -90,7 +90,11 @@ export function FiltersSidebar({
             className="w-full rounded-md border border-zinc-300 bg-white py-2 pr-3 pl-9 text-sm focus:border-zinc-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900"
           />
         </label>
-        <p className="mt-2 text-xs text-zinc-500">
+        <p
+          className="mt-2 text-xs text-zinc-500"
+          role="status"
+          aria-live="polite"
+        >
           {resultCount} of {totalCount} controllers
         </p>
       </div>

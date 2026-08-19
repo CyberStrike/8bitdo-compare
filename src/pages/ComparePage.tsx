@@ -132,7 +132,26 @@ export function ComparePage() {
       )}
 
       {status === 'loading' ? (
-        <p className="text-sm text-zinc-500">Loading catalog…</p>
+        <div aria-busy="true">
+          <p className="sr-only" role="status">
+            Loading comparison…
+          </p>
+          <div
+            aria-hidden="true"
+            className="grid animate-pulse gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex flex-col gap-2 rounded-lg border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-900"
+              >
+                <div className="aspect-square rounded-md bg-zinc-100 dark:bg-zinc-800" />
+                <div className="h-5 w-2/3 rounded bg-zinc-100 dark:bg-zinc-800" />
+                <div className="h-4 w-1/2 rounded bg-zinc-100 dark:bg-zinc-800" />
+              </div>
+            ))}
+          </div>
+        </div>
       ) : selected.length === 0 ? (
         <p className="rounded-md border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
           No controllers selected. Pick up to 3 from the{' '}

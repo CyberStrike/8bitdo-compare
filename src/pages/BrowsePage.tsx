@@ -3,6 +3,7 @@ import { Gamepad2, RefreshCw } from 'lucide-react'
 
 import { CompareBar } from '../components/CompareBar'
 import { ControllerCard } from '../components/ControllerCard'
+import { ControllerCardSkeleton } from '../components/ControllerCardSkeleton'
 import { FiltersSidebar } from '../components/FiltersSidebar'
 import { useCatalog } from '../context/useCatalog'
 import {
@@ -97,9 +98,23 @@ export function BrowsePage() {
           totalCount={controllers.length}
         />
 
-        <section aria-label="Controllers">
+        <section aria-label="Controllers" aria-busy={status === 'loading'}>
           {status === 'loading' ? (
-            <p className="text-sm text-zinc-500">Loading…</p>
+            <>
+              <p className="sr-only" role="status">
+                Loading controllers…
+              </p>
+              <ul
+                aria-hidden="true"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              >
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <li key={i}>
+                    <ControllerCardSkeleton />
+                  </li>
+                ))}
+              </ul>
+            </>
           ) : filtered.length === 0 ? (
             <p className="text-sm text-zinc-500">
               No controllers match the current filters.

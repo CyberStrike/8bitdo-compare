@@ -218,6 +218,21 @@ function DotIndicator({ variant }: { variant: RowVariant }) {
   )
 }
 
+/**
+ * Text equivalent of the colour accent + dot, read by screen readers so the
+ * three-state diff is not conveyed by colour alone (design §7 / WCAG 1.4.1).
+ */
+function VariantAnnotation({ variant }: { variant: RowVariant }) {
+  if (variant === 'equal') return null
+  return (
+    <span className="sr-only">
+      {variant === 'partial'
+        ? ' (only some controllers have this)'
+        : ' (values differ)'}
+    </span>
+  )
+}
+
 function PricingRowView({
   row,
   hasOpenSlot,
@@ -245,6 +260,7 @@ function PricingRowView({
       >
         <DotIndicator variant={variant} />
         {row.label}
+        <VariantAnnotation variant={variant} />
       </div>
       {row.values.map((value, i) => (
         <div
@@ -282,6 +298,7 @@ function SpecRowView({
       >
         <DotIndicator variant={variant} />
         {row.label}
+        <VariantAnnotation variant={variant} />
       </div>
       {row.values.map((value, i) => (
         <div key={i} className={clsx('px-3 py-2', accent)}>
